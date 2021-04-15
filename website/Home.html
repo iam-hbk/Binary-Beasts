@@ -4,14 +4,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="Home.css" />
     <title>Crime_Line</title>
   </head>
   <body>
     <header>
-      <img src="logo.png" alt="" class="logo" />
+      <img src="slide_images/logo.png" alt="" class="logo" />
       <ul>
         <a href="#"><li>Home</li></a>
+        <a href="#"><li>Forum</li></a>
         <a href="#"><li>Whistle</li></a>
         <a href="#"><li>get help</li></a>
         <a href="#"><li>News and Stats</li></a>
@@ -22,11 +23,83 @@
         <div class="button">Anonymous Login</div>
       </div>
     </header>
-    <div>
-      <div class="slide"><span class="readMore">Find out more</span></div>
-    </div>
-    <footer>
 
-    </footer>
+    <!-- SLIDER BEGIN-->
+
+    <section class="top">
+      <div class="slider">
+        <div class="slides">
+          <input type="radio" name="radio-btn" id="radio1" />
+          <input type="radio" name="radio-btn" id="radio2" />
+          <input type="radio" name="radio-btn" id="radio3" />
+          <input type="radio" name="radio-btn" id="radio4" />
+          <input type="radio" name="radio-btn" id="radio5" />
+          <div class="slide first">
+            <img src="slide_images/logo.png" alt="" srcset="" />
+          </div>
+          <span class="readmore"><a href="#">read more</a></span>
+
+          <div class="slide">
+            <img src="slide_images/forum.jpg" alt="" srcset="" />
+          </div>
+          <span class="readmore"><a href="#">read more</a></span>
+
+          <div class="slide">
+            <img src="slide_images/whistle.jpg" alt="" srcset="" />
+          </div>
+          <span class="readmore"><a href="#">read more</a></span>
+
+          <div class="slide">
+            <img src="slide_images/help.jpg" alt="" srcset="" />
+          </div>
+          <span class="readmore"><a href="#">read more</a></span>
+
+          <div class="slide">
+            <img src="slide_images/stats.jpg" alt="" srcset="" />
+          </div>
+          <span class="readmore"><a href="#">read more</a></span>
+
+          <div class="auto-nav">
+            <div class="auto-btn1"></div>
+            <div class="auto-btn2"></div>
+            <div class="auto-btn3"></div>
+            <div class="auto-btn4"></div>
+            <div class="auto-btn5"></div>
+          </div>
+        </div>
+        <div class="manual-nav">
+          <label for="radio1" class="manual-btn">.</label>
+          <label for="radio2" class="manual-btn">.</label>
+          <label for="radio3" class="manual-btn">.</label>
+          <label for="radio4" class="manual-btn">.</label>
+          <label for="radio5" class="manual-btn">.</label>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDER END -->
+    <footer></footer>
+
+    <!-- <script>
+      var count = 2;
+      document.getElementById("radio1").checked = true;
+      var reverse = true;
+      setInterval(function () {
+        document.getElementById("radio" + count).checked = true;
+        if (reverse) {
+          count++;
+          if (count > 5) {
+            reverse = !reverse;
+            count--;
+          }
+        } else {
+          count--;
+          if (count < 1) {
+            reverse = !reverse;
+            count++;
+          }
+        }
+      }, 7000);
+    </script> -->
   </body>
 </html>
