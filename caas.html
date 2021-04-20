@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>seek coding</title>
+    <link rel="stylesheet" href="caas.css">
+</head>
+<body>
+
+    <div class="main_body">
+        
+        <!--The login Form-->
+        <div id='login_form'class='login-page'>
+
+            <div class="box-login">
+
+                <div class='button-box'>
+
+                    <div id='move_button'></div>
+
+                    <button type='button'onclick='login()'class='top_button'>Sign In</button>
+
+                    <button type='button'onclick='signup()'class='top_button'>Sign Up</button>
+                </div>
+
+                <div>
+                <!--Login Information form-->
+                <form id='login' class='login_detail_line'>
+                    <input type='text' id='user_input' placeholder='Email' required >
+                    <br>
+		            <input type='password' id='user_input' placeholder='Password' required >
+
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+		            <button type='submit'id='BUTTON_'>LOGIN</button>
+		        </form>
+                </div>
+
+                <div>
+                <!--Register Information form-->
+		        <form id='signup' class='register_detail_line'>
+		            <input type='text' id='user_input' placeholder='First Name' required>
+		            <input type='text'id='user_input'placeholder='Last Name ' required>
+		            <input type='email' id='user_input' placeholder='Email' required>
+		            <input type='password' id='user_input' placeholder='Password' required>
+		            <input type='password' id='user_input' placeholder='Confirm Password'  required>
+
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <button type='submit'id='BUTTON_'>SIGN UP </button>
+	            </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="caas.js"></script>
+
+</body>
+</html>

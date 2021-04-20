@@ -1,0 +1,145 @@
+/*This is main body of the webpage or rather the background style of the webpage*/
+.main_body
+{
+    position: absolute;
+    height: 100%;
+    background-image: linear-gradient(rgba(4, 158, 4, 0.747), rgba(40, 43, 243, 0.7)),url(crime-line.jpg);
+	width: 100%;	
+	background-position: center;
+	background-size: cover;
+	
+}
+
+/*Top body*/
+*html
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+.box-login
+{
+    background: #110a01ce;
+    width:400px;
+    box-shadow: rgb(179, 255, 0);
+	height:500px;
+    overflow: hidden;
+	margin:6% auto;
+    position:relative;
+	padding: 05px;
+    border: yellow;
+}
+
+.button-box
+{
+	margin:35px auto;
+    box-shadow: 0 0 30px 9px #060af01f;
+	position:relative;
+	/*border-radius: 45px;*/
+    color: red;
+    width:221px;
+
+}
+
+/*Sign In and Sign Up top buttons*/
+.top_button
+{
+    font-weight: bolder;
+	color: white;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 13px;
+	cursor:pointer;
+	background:transparent;
+	border: none;
+    padding:11px 30px;    
+	outline: none;
+	position: relative;
+}
+
+/*Animated top button for the SignIn and SignUp*/
+#move_button
+{
+	/*top: 0; */
+	left:0;
+	position: absolute;
+	width: 110px;
+	height: 100%;
+	background: #9E1030FF;
+	/*border-radius: 35px;*/
+	transition: .8s;
+}
+
+
+.login_detail_line
+{
+	top: 180px;
+    width:320px;
+	position:absolute;
+	transition:.5s;
+}
+
+.register_detail_line
+{
+    top: 170px;
+	position:absolute;
+	width:320px;
+	transition:.5s;
+}
+
+#BUTTON_
+{
+	width: 85%;
+	padding: 10px 30px;
+	cursor: pointer;
+	font-weight: bolder;
+	border: none;
+	color: white;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	display: block;
+	margin: auto;
+	background: #9E1030FF;
+	outline: none;
+}
+
+/*user input required*/
+#user_input
+{
+	width: 100%;
+	padding:10px 0;
+	margin:5px 0;
+	border-left:0;
+	border-top:0;
+	border-right:0;
+	border-bottom: 1px yellow;
+	outline:none;
+	background: transparent;
+}
+
+/*colour of the login user input*/
+#login input
+{
+	color:white;
+	font-size:20px;
+}
+
+/*colour of the signup user input*/
+#signup input
+{
+	color:white;
+	font-size: 15px;
+}
+
+#login
+{
+	left:45px;
+	bottom: 55px;
+}
+
+
+#signup
+{
+	left:450px;
+}
