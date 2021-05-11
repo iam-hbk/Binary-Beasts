@@ -10,12 +10,21 @@ body {
   padding-top: 80px;
   box-sizing: border-box;
   margin: 0;
+  /* background-color: #f89e4996; */
 }
+
 
 /* STYLE FOR HEADER */
 header {
+  background: #9e1030ff;
+  background: linear-gradient(
+    90deg,
+    #9e1030ff 10%,
+    rgba(0, 0, 0, 0.8556373232886905) 100%
+  );
+  color: white;
   display: flex;
-  position: absolute; /* here for position */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -24,6 +33,34 @@ header {
   padding: 0;
   margin: 0;
   box-shadow: 0px 0px 8px black;
+  transition: 0.0002s;
+  -webkit-transition: 0.0002s;
+  -moz-transition: 0.0002s;
+  -ms-transition: 0.0002s;
+  -o-transition: 0.0002s;
+}
+header.sticky {
+  position: fixed;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  padding: 13px 0;
+  color: white;
+  background-color: #111;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+}
+header.sticky > div.logo {
+  display: none;
+}
+header.sticky > div.tabs > span.tab a {
+  color: white;
+}
+header.sticky > div.logins {
+  display: none;
 }
 div.logo {
   width: 100px;
@@ -40,12 +77,17 @@ div.tabs {
   text-transform: uppercase;
 }
 div.tabs .tab:not(:last-child) {
-  border-right: 2px solid black;
+  border-right: 2px solid whitesmoke;
+
   padding: 0 25px;
+}
+header.sticky div.tabs .tab:not(:last-child) {
+  border-right: 2px solid white;
 }
 span.tab a {
   text-decoration: none;
-  color: black;
+  font-weight: bold;
+  color: white;
   transition: 0.5s;
   -webkit-transition: 0.5s;
   -moz-transition: 0.5s;
@@ -53,7 +95,7 @@ span.tab a {
   -o-transition: 0.5s;
 }
 span.tab:hover {
-  text-shadow: 0 0 5px black;
+  text-shadow: 0 0 5px rgb(255, 255, 255);
   transform: scale(1.2);
   transition: -0.1s;
   border: none;
@@ -142,6 +184,9 @@ div.logins:hover {
 }
 
 /* STYLE FOR SECTION 1 */
+/* .section1 div.info{
+  border: 2px solid #222;
+} */
 h1 {
   font-family: Crimeline;
   font-size: 52px;
@@ -396,30 +441,24 @@ h5 {
 /* ZANDZ LOGIN BOX */
 #signUp-signIn {
   display: none;
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  top: 90px;
+  right: 2vw;
   justify-content: center;
-  padding: 40px 10px;
   color: black;
-  background-image: url("images/loginbg.jpg");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  margin: 7px 0 0 0%;
+  backdrop-filter: blur(5px);
   border-radius: 20px;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   -ms-border-radius: 20px;
   -o-border-radius: 20px;
 }
-#search > :placeholder-shown{
+#search > :placeholder-shown {
   color: white;
 }
-@keyframes grayscaler {
-  0%,
-  100% {
-    filter:hue-rotate(180);
-    -webkit-filter:hue-rotate(180);
-}
-}
+
 .box-login {
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
   border-radius: 5px;
@@ -444,9 +483,7 @@ h5 {
   position: relative;
   color: red;
   width: 221px;
-  -webkit-animation: grayscaler 2s infinite linear;
 }
-
 
 /*Sign In and Sign Up top buttons*/
 .top_button {
@@ -471,6 +508,7 @@ h5 {
   width: 110px;
   height: 100%;
   background: #9e1030ff;
+  color: white;
   /*border-radius: 35px;*/
   transition: 0.8s;
 }
@@ -481,18 +519,15 @@ h5 {
   position: absolute;
   transition: 0.5s;
 }
-.register_detail_line input::placeholder{
+.register_detail_line input::placeholder {
   color: white;
 }
-.register_detail_line input{
-  border-bottom: 1px white;
-}
+
 .register_detail_line {
   top: 170px;
   position: absolute;
   width: 320px;
   transition: 0.5s;
-
 }
 
 #BUTTON_ {
@@ -511,16 +546,17 @@ h5 {
 }
 
 /*user input required*/
-#user_input {
+input.user_input {
   width: 100%;
-  padding: 10px 0;
-  margin: 5px 0;
-  border-left: 0;
-  border-top: 0;
-  border-right: 0;
-  border-bottom: 1px yellow;
+  border: none;
   outline: none;
-  background: transparent;
+  background-color: rgba(158, 16, 49, 0.366);
+  padding: 13px 8px;
+  margin: 1px -19px;
+  border: 10px;
+}
+input.user_input:focus {
+  border-bottom: 4px solid black;
 }
 
 /*colour of the login user input*/
@@ -542,4 +578,24 @@ h5 {
 
 #signup {
   left: 450px;
+}
+button#s2.top_button {
+  color: #9e1030ff;
+}
+
+/* STYLE FOR THE SCROLL BAR */
+
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: #111;
+  overflow: visible;
+}
+::-webkit-scrollbar-thumb {
+  width: 10px;
+
+  background-color: #9e1030ff;
+}
+::-webkit-scrollbar-thumb:hover {
+  width: 15px;
+  background-color: #00aced;
 }

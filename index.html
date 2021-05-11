@@ -17,14 +17,30 @@
   </head>
   <body>
     <header>
-      <div class="logo"><img src="images/logo.png" alt="" srcset="" /></div>
+      <div class="logo"><img src="images/logo-removebg-preview.png" alt="" srcset="" /></div>
       <div class="tabs">
-        <span class="tab"><a id="home" href="#home.html">Home</a></span>
-        <span class="tab"><a id="hotline" href="#hotlines">Hot-lines</a></span>
-        <span class="tab"><a id="forum" href="#forum">Forum</a></span>
-        <span class="tab"><a id="getHelp" href="#getHelp">Get Help</a></span>
-        <span class="tab"><a id="stats" href="#stats">Statistics</a></span>
-        <span class="tab"><a id="about" href="#footer">About</a></span>
+        <span class="tab"
+          ><a class="anchorHeader" id="home" href="#home.html">Home</a></span
+        >
+        <span class="tab"
+          ><a class="anchorHeader" id="hotline" href="#hotlines"
+            >Hot-lines</a
+          ></span
+        >
+        <span class="tab"
+          ><a class="anchorHeader" id="forum" href="#forum">Forum</a></span
+        >
+        <span class="tab"
+          ><a class="anchorHeader" id="getHelp" href="#getHelp"
+            >Get Help</a
+          ></span
+        >
+        <span class="tab"
+          ><a class="anchorHeader" id="stats" href="#stats">Statistics</a></span
+        >
+        <span class="tab"
+          ><a class="anchorHeader" id="about" href="#footer">About</a></span
+        >
         <input
           type="search"
           name="search"
@@ -36,22 +52,25 @@
           ><i class="fa fa-search" aria-hidden="true"></i
         ></label>
       </div>
-      <div onclick="displaySignIn_SignUp()" class="logins">
+      <div onclick="displaySignIn_SignUp()" id="SignIn_SignUp" class="logins">
         <a href="#signInSignUp">Sign In | Sign Up</a>
       </div>
     </header>
     <div class="signUp-signIn" id="signUp-signIn">
+      
       <!-- Zandz's code -->
       <div id="login_form" class="login-page">
+        
         <div class="box-login">
+          <div style="text-align: right;" id="quit">X</div>
           <div class="button-box">
             <div id="move_button"></div>
 
-            <button type="button" onclick="login()" class="top_button">
+            <button type="button" onclick="login()" class="top_button" id="f1">
               Sign In
             </button>
 
-            <button type="button" onclick="signup()" class="top_button">
+            <button type="button" onclick="signup()" class="top_button" id="s2">
               Sign Up
             </button>
           </div>
@@ -59,11 +78,16 @@
           <div>
             <!--Login Information form-->
             <form id="login" class="login_detail_line">
-              <input type="text" id="user_input" placeholder="Email" required />
+              <input
+                type="text"
+                class="user_input"
+                placeholder="Email"
+                required
+              />
               <br />
               <input
                 type="password"
-                id="user_input"
+                class="user_input"
                 placeholder="Password"
                 required
               />
@@ -72,35 +96,40 @@
               <br />
               <br />
               <br />
-              <button type="submit" id="BUTTON_">LOGIN</button>
+              <button type="submit" id="BUTTON_">Sign In</button>
             </form>
           </div>
 
           <div>
             <!--Register Information form-->
             <form id="signup" class="register_detail_line">
-              <input type="text" id="user_input" placeholder="Name" required />
               <input
                 type="text"
-                id="user_input"
+                class="user_input"
+                placeholder="Name"
+                required
+              />
+              <input
+                type="text"
+                class="user_input"
                 placeholder="Create a username "
                 required
               />
               <input
                 type="email"
-                id="user_input"
+                class="user_input"
                 placeholder="Email"
                 required
               />
               <input
                 type="password"
-                id="user_input"
+                class="user_input"
                 placeholder="Password"
                 required
               />
               <input
                 type="password"
-                id="user_input"
+                class="user_input"
                 placeholder="Confirm Password"
                 required
               />
@@ -131,15 +160,12 @@
         </p>
       </div>
       <div class="img">
-        <img src="images/logo.png" alt="" />
+        <img src="images/logo-removebg-preview.png" alt="" />
       </div>
     </section>
     <section class="section2">
       <div class="img">
-        <img
-          src="images/hotline2.jpg"
-          alt=""
-        />
+        <img src="images/hotline2.jpg" alt="" />
       </div>
       <div class="info">
         <h1>Hot-lines</h1>
@@ -247,35 +273,49 @@
       <div class="followUs">
         <h5>Follow Us</h5>
         <div class="icons">
-          <a href="https://www.instagram.com/crimeline_za/"
+          <a href="https://www.instagram.com/crimeline_za/" target="_blank"
             ><i class="fab fa-instagram"></i
           ></a>
-          <a href="facebookPage"><i class="fab fa-facebook-f"></i></a>
-          <a href="twitterPage"><i class="fab fa-twitter"></i></a>
+          <a target="_blank" href="facebookPage"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a target="_blank" href="twitterPage"
+            ><i class="fab fa-twitter"></i
+          ></a>
         </div>
       </div>
     </footer>
-    <!-- <script>
-      window.addEventListener("scroll",function(){
-        var header = document.querySelector("header");
-        header.classList.toggle("st")
-      })
-    </script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-      var SignIn_SignUp = document.getElementById("signUp-signIn");
-      var display = false;
-      console.log(display);
-      function displaySignIn_SignUp() {
-        if (display) {
-          SignIn_SignUp.style.display = "none";
-          console.log("changed to none");
-          display = !display;
-        } else {
-          console.log("changed to flex");
-          SignIn_SignUp.style.display = "flex";
-          display = !display;
-        }
-      }
+      window.addEventListener("scroll", function () {
+        var header = document.querySelector("header");
+        header.classList.toggle("sticky", window.scrollY > 5);
+      });
+    </script>
+    <script>
+      $(document).ready(() => {
+        var display = false;
+        $("#SignIn_SignUp").click(() => {
+          $("#signUp-signIn").toggle();
+        });
+        $("#quit").click(() => {
+          $("#signUp-signIn").toggle();
+        });
+      });
+      // var SignIn_SignUp = document.getElementById("signUp-signIn");
+      // var display = false;
+      // console.log(display);
+      // function displaySignIn_SignUp() {
+      //   if (display) {
+      //     SignIn_SignUp.style.display = "none";
+      //     console.log("changed to none");
+      //     display = !display;
+      //   } else {
+      //     console.log("changed to flex");
+      //     SignIn_SignUp.style.display = "flex";
+      //     display = !display;
+      //   }
+      // }
     </script>
     <script src="app.js"></script>
   </body>
