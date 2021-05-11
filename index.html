@@ -17,7 +17,9 @@
   </head>
   <body>
     <header>
-      <div class="logo"><img src="images/logo-removebg-preview.png" alt="" srcset="" /></div>
+      <div class="logo">
+        <img src="images/logo-removebg-preview.png" alt="" srcset="" />
+      </div>
       <div class="tabs">
         <span class="tab"
           ><a class="anchorHeader" id="home" href="#home.html">Home</a></span
@@ -57,12 +59,10 @@
       </div>
     </header>
     <div class="signUp-signIn" id="signUp-signIn">
-      
       <!-- Zandz's code -->
       <div id="login_form" class="login-page">
-        
         <div class="box-login">
-          <div style="text-align: right;" id="quit">X</div>
+          <span style="text-align: right" id="quit">X</span>
           <div class="button-box">
             <div id="move_button"></div>
 
@@ -150,13 +150,10 @@
       <div class="info">
         <h1 id="crimeline">crime-line</h1>
         <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias error
-          atque ut impedit sit nesciunt quaerat ipsam at. Excepturi, corrupti
-          quidem voluptate error id blanditiis repellat asperiores a optio
-          laboriosam. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Officiis consectetur, sed dignissimos expedita corporis ex ratione.
-          Velit ipsum pariatur quis porro culpa totam quod repudiandae. Vitae
-          nesciunt similique quas maxime!
+          We empower people to speak up and make a difference We want to assure
+          you that you are not alone and that there are people who want to help,
+          just let us know what you need and we will link you to trained
+          professionals who are willing to listen and lend you a helping hand.
         </p>
       </div>
       <div class="img">
@@ -264,10 +261,10 @@
       <div class="disclaimer">
         <h5>Disclaimer</h5>
         <p class="disclaimerText">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint
-          blanditiis nemo temporibus dicta itaque laudantium vel aperiam
-          adipisci velit ipsum unde, suscipit amet esse, eveniet expedita atque
-          sunt magnam laboriosam.
+          We empower people to speak up and make a difference We want to assure
+          you that you are not alone and that there are people who want to help,
+          just let us know what you need and we will link you to trained
+          professionals who are willing to listen and lend you a helping hand.
         </p>
       </div>
       <div class="followUs">
@@ -294,6 +291,8 @@
     </script>
     <script>
       $(document).ready(() => {
+        $("#signUp-signIn").css("border","2px solid black");
+        $("#signUp-signIn").css("display","none");
         var display = false;
         $("#SignIn_SignUp").click(() => {
           $("#signUp-signIn").toggle();

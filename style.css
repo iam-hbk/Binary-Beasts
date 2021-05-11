@@ -1,16 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@100&display=swap");
 @font-face {
   font-family: "Crimeline";
   src: url(fonts/FredokaOne-Regular.ttf);
 }
 body {
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-family: 'Ubuntu', sans-serif;
+  /* font-size: 24px; */
+  font-weight: 500;
   padding: 0;
   padding-top: 80px;
   box-sizing: border-box;
   margin: 0;
-  /* background-color: #f89e4996; */
 }
 
 
@@ -194,7 +196,10 @@ h1 {
   font-weight: 100;
 }
 p {
-  font-family: "Courier New", Courier, monospace;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 20px;
+  letter-spacing: .8px;
+  font-weight: 600;
 }
 h1#crimeline {
   text-shadow: 0 0 3px red;
@@ -378,6 +383,8 @@ h5 {
 .disclaimer p {
   margin: 0;
   text-align: center;
+  font-weight: 200;
+  font-size: 17px;
 }
 .followUs {
   grid-area: followUs;
@@ -440,7 +447,6 @@ h5 {
 
 /* ZANDZ LOGIN BOX */
 #signUp-signIn {
-  display: none;
   position: absolute;
   width: fit-content;
   height: fit-content;
@@ -476,7 +482,25 @@ h5 {
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
 }
-
+.box-login span#quit{
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  cursor: pointer;
+  margin: 8px;
+  padding: 2px 5px;
+  font-weight: bold;
+  font-family: "Crimeline";
+}
+.box-login span#quit:hover{
+  border-radius: 10px;
+  background-color: lightgrey;
+  
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
 .button-box {
   margin: 35px auto;
   box-shadow: 0 0 30px 9px #e4e5ff1f;
