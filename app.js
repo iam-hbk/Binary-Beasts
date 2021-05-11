@@ -1,4 +1,29 @@
+// Sticky Header JS
+window.addEventListener("scroll", function () {
+    var header = document.querySelector("header");
+    header.classList.toggle("sticky", window.scrollY > 5);
+  });
 
+
+
+
+// login toggle part JS
+$("#signUp-signIn").css("display","none");
+$(document).ready(() => {
+  $("#signUp-signIn").css("border","2px solid black");
+  var display = false;
+  $("#SignIn_SignUp").click(() => {
+    $("#signUp-signIn").toggle();
+  });
+  $("#quit").click(() => {
+    $("#signUp-signIn").toggle();
+  });
+});
+
+
+
+
+// Login behaviour (colors,page switching...) JS
 function login()
 {
     signupButton.style.left='500px';
@@ -49,3 +74,10 @@ window.onclick = function(event)
         Log_.style.display;
     }
 }
+
+// End of login behaviour JS
+
+// search command JS
+$('.fa-search').click(()=>{
+  $('#search').toggle();
+})
