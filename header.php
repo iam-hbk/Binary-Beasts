@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="headerIndexFooter.css" />
     <title>Document</title>
   </head>
-  <body>
-    <header>
+
+  <body>    <header>
       <div class="logo">
         <img src="images/logo-removebg-preview.png" alt="" srcset="" />
       </div>
@@ -30,7 +30,7 @@
           ></span
         >
         <span class="tab"
-          ><a class="anchorHeader" id="forum" href="#forum">Forum</a></span
+          ><a class="anchorHeader" id="forum" href="pack/">Forum</a></span
         >
         <span class="tab"
           ><a class="anchorHeader" id="getHelp" href="#getHelp"
