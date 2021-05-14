@@ -30,7 +30,7 @@
           ></span
         >
         <span class="tab"
-          ><a class="anchorHeader" id="forum" href="pack/">Forum</a></span
+          ><a class="anchorHeader" id="forum" href="forum/index.php">Forum</a></span
         >
         <span class="tab"
           ><a class="anchorHeader" id="getHelp" href="#getHelp"
