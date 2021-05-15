@@ -1,119 +1,138 @@
 body {
-    background-color: #4E4E4E;
-    text-align: center;         /* make sure IE centers the page too */
+  background-color: #4e4e4e;
+  text-align: center; /* make sure IE centers the page too */
 }
- 
+
 #wrapper {
-    width: 900px;
-    margin: 0 auto;             /* center the page */
+  width: 900px;
+  margin: 0 auto; /* center the page */
 }
- 
+
 #content {
-    background-color: #fff;
-    border: 1px solid #000;
-    float: left;
-    font-family: Arial;
-    padding: 20px 30px;
-    text-align: left;
-    width: 100%;                /* fill up the entire div */
+  background-color: #fff;
+  border: 1px solid #000;
+  float: left;
+  font-family: Arial;
+  padding: 20px 30px;
+  text-align: left;
+  width: 100%; /* fill up the entire div */
 }
- 
+
 #menu {
-    float: left;
-    border: 1px solid #000;
-    border-bottom: none;        /* avoid a double border */
-    clear: both;                /* clear:both makes sure the content div doesn't float next to this one but stays under it */
-    width:100%;
-    height:20px;
-    padding: 0 30px;
-    background-color: #FFF;
-    text-align: left;
-    font-size: 85%;
+  float: left;
+  border: 1px solid #000;
+  border-bottom: none; /* avoid a double border */
+  clear: both; /* clear:both makes sure the content div doesn't float next to this one but stays under it */
+  width: 100%;
+  height: 20px;
+  padding: 0 30px;
+  background-color: #fff;
+  text-align: left;
+  font-size: 85%;
 }
- 
+
 #menu a:hover {
-    background-color: #009FC1;
+  background-color: #009fc1;
 }
- 
+
 #userbar {
-    background-color: #fff;
-    float: right;
-    width: 250px;
+  background-color: #fff;
+  float: right;
+  width: 250px;
 }
- 
+
 #footer {
-    clear: both;
+  clear: both;
 }
- 
+
 /* begin table styles */
 table {
-    border-collapse: collapse;
-    width: 100%;
+  border-collapse: collapse;
+  width: 100%;
 }
- 
+
 table a {
-    color: #000;
+  color: #000;
 }
- 
+
 table a:hover {
-    color:#373737;
-    text-decoration: none;
+  color: #373737;
+  text-decoration: none;
 }
- 
+
 th {
-    background-color: #B40E1F;
-    color: #F0F0F0;
+  background-color: #b40e1f;
+  color: #f0f0f0;
 }
- 
+
 td {
-    padding: 5px;
+  padding: 5px;
 }
- 
+
 /* Begin font styles */
-h1, #footer {
-    font-family: Arial;
-    color: #F1F3F1;
+h1,
+#footer {
+  font-family: Arial;
+  color: #f1f3f1;
 }
- 
-h3 {margin: 0; padding: 0;}
- 
+
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
 /* Menu styles */
 .item {
-    background-color: #00728B;
-    border: 1px solid #032472;
-    color: #FFF;
-    font-family: Arial;
-    padding: 3px;
-    text-decoration: none;
+  background-color: #00728b;
+  border: 1px solid #032472;
+  color: #fff;
+  font-family: Arial;
+  padding: 3px;
+  text-decoration: none;
 }
- 
+
 .leftpart {
-    width: 70%;
+  width: 70%;
 }
- 
+
 .rightpart {
-    width: 30%;
+  width: 30%;
 }
- 
+
 .small {
-    font-size: 75%;
-    color: #373737;
+  font-size: 75%;
+  color: #373737;
 }
 #footer {
-    font-size: 65%;
-    padding: 3px 0 0 0;
+  font-size: 65%;
+  padding: 3px 0 0 0;
 }
- 
+
 .topic-post {
-    height: 100px;
-    overflow: auto;
+  height: 100px;
+  overflow: auto;
 }
- 
+
 .post-content {
-    padding: 30px;
+  padding: 30px;
 }
- 
+
 textarea {
-    width: 500px;
-    height: 200px;
+  width: 500px;
+  height: 200px;
+}
+
+/* HBK style starts here */
+
+div.headerPost {
+  background-color: #b40e1f;
+  color: white;
+  text-align: center;
+  text-transform: capitalize;
+  padding: 5px;
+}
+span.adminFlag {
+  background-color: #b40e1e;
+  color: white;
+  padding: 1px 5px;
 }

@@ -2,7 +2,6 @@
 //create_cat.php
 include 'connect.php';
 include 'header.php';
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 
 echo '<h2>Create a topic</h2>';
 // $_SESSION['signed_in'] = true;

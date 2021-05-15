@@ -3,6 +3,15 @@
 include 'connect.php';
 include 'header.php';
 
+?>
+<style>
+#userbar{
+    display: none;
+}
+</style>
+<?php
+
+
 echo '<h3>Sign up</h3>';
 
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
@@ -13,8 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
         Password: <input type="password" name="user_pass">
         Password again: <input type="password" name="user_pass_check">
         E-mail: <input type="email" name="user_email">
-        <input type="submit" value="Add category" />
+        <input type="submit" value="Register" />
      </form>';
+     echo "Already a member ? <a href='signin.php'>Sign in.</a>";
 } else {
     /* so, the form has been posted, we'll process the data in three steps:
     1.  Check the data
@@ -49,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
         foreach ($errors as $key => $value) /* walk through the array so all the errors get displayed */ {
             echo '<li>' . $value . '</li>'; /* this generates a nice error list */
         }
-        echo '</ul>';
+        echo '</ul><br><a href="signup.php">Try again</a>';
     } else {
         //the form has been posted without, so save it
         //notice the use of mysql_real_escape_string, keep everything safe!
@@ -63,8 +73,8 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
                        '$password',
                        '$userEmail',
                         NOW(),
-                        0)";
-
+                        1)";
+/* CREATE A DROPDOWN TO CHECK IF IT'S AN ADMIN OR NORMAL USER  */
         $result = mysqli_query($conn, $sql);
         if (!$result) {
             //something went wrong, display the error

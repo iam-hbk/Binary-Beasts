@@ -21,6 +21,7 @@ else
             Password: <input type="password" name="user_pass">
             <input type="submit" value="Sign in" />
          </form>';
+         echo "Don't have an account ? <a href='signup.php'>Register</a>";
     }
     else
     {
@@ -89,7 +90,7 @@ else
                 {
                     //set the $_SESSION['signed_in'] variable to TRUE
                     $_SESSION['signed_in'] = true;
-                     
+
                     //we also put the user_id and user_name values in the $_SESSION, so we can use it at various pages
                     while($row = mysqli_fetch_assoc($result))
                     {
@@ -97,13 +98,13 @@ else
                         $_SESSION['user_name']  = $row['user_name'];
                         $_SESSION['user_level'] = $row['user_level'];
                     }
-                     
+
                     echo 'Welcome, ' . $_SESSION['user_name'] . '. <a href="index.php">Proceed to the forum overview</a>.';
                 }
             }
         }
     }
 }
- 
+
 include 'footer.php';
 ?>
