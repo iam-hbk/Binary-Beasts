@@ -119,7 +119,8 @@ h3 {
 
 textarea {
   width: 500px;
-  height: 200px;
+  height: 100px;
+  resize: none;
 }
 
 /* HBK style starts here */
@@ -130,6 +131,7 @@ div.headerPost {
   text-align: center;
   text-transform: capitalize;
   padding: 5px;
+  /* width: 100%; */
 }
 span.adminFlag {
   background-color: #b40e1e;

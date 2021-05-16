@@ -51,3 +51,4 @@ if (!$result) {
 }
 
 include 'footer.php';
+?>
