@@ -2,7 +2,15 @@
 //signin.php
 include 'connect.php';
 include 'header.php';
- 
+
+?>
+<style>
+div#userbar{
+    display: none;
+}
+</style>
+<?php
+
 echo '<h3>Sign in</h3>';
  
 //first, check if the user is already signed in. If that is the case, there is no need to display this page
@@ -17,8 +25,8 @@ else
         /*the form hasn't been posted yet, display it
           note that the action="" will cause the form to post to the same page it is on */
         echo '<form method="post" action="">
-            Username: <input type="text" name="user_name" />
-            Password: <input type="password" name="user_pass">
+            Username: <input required type="text" name="user_name" />
+            Password: <input required type="password" name="user_pass">
             <input type="submit" value="Sign in" />
          </form>';
          echo "Don't have an account ? <a href='signup.php'>Register</a>";

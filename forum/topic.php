@@ -26,7 +26,7 @@ div.postedBy {
 div.postContent {
   grid-area: 1 / 2 / 2 / 3;
   background-color: darkorchid;
-  
+
 }
 #content{
     /* height: 100%; */
@@ -61,6 +61,8 @@ $sql_body = "SELECT
     posts.post_by = users.user_id
     WHERE
     posts.post_topic = " . mysqli_real_escape_string($conn, $_GET['id']);
+$sql_body2 = "SELECT     posts.post_topic,     posts.post_content,     posts.post_date,     posts.post_by,     users.user_id,     users.user_name FROM     posts LEFT JOIN
+users ON     posts.post_by = users.user_id WHERE     users.user_id = posts.post_by AND posts.post_topic = " . mysqli_real_escape_string($conn, $_GET['id']) . "  ORDER BY posts.post_date DESC";
 
 $result_header = mysqli_query($conn, $sql_header);
 if (!$result_header) {
@@ -72,9 +74,10 @@ if (!$result_header) {
     }
 }
 
-$result_body = mysqli_query($conn, $sql_body);
+$result_body = mysqli_query($conn, $sql_body2);
 if (!$result_body) {echo "An error occurred while fetching data for Body";} else {
     while ($row = mysqli_fetch_assoc($result_body)) {
+        // echo "<br><br><br>".$_GET["id"];
         $user_name = $row["user_name"];
         $post_date = $row["post_date"];
         $post_content = $row["post_content"];
@@ -82,7 +85,13 @@ if (!$result_body) {echo "An error occurred while fetching data for Body";} else
         <div class='postContainer'>
             <div class="postedBy"><div id="username">$user_name</div><div id="post_date">$post_date</div></div>
             <div class="postContent">$post_content</div>
-            <div class="postCommands"><a href="reply.php">reply</a></div>
+            <div class="postCommands"><span id="reply_button" >reply</span></div>
+        </div>
+        <div id="form">
+            <form style="margin-top: 20px;" id="reply_area" method="post" action="reply.php?id=5">
+                <textarea required name="reply-content"></textarea>
+                <input type="submit" value="Submit reply" />
+            </form>
         </div>
     EOF;
 
@@ -91,3 +100,27 @@ if (!$result_body) {echo "An error occurred while fetching data for Body";} else
 }
 
 include "footer.php";
+?>
+
+
+<script>
+
+$(document).ready(()=>{
+    $("div#form").css("display","none");
+    var isNone = true;
+    console.log("ready");
+    $("span#reply_button").click(()=>{
+    if (isNone){
+        $("div#form").css("display","block");
+        isNone = !isNone;
+
+    }
+    else{
+        $("div#form").css("display","none");
+        isNone = !isNone;
+    }
+    console.log("hidden");
+})
+})
+
+</script>
