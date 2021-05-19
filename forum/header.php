@@ -26,7 +26,6 @@
             if($_SESSION['signed_in'])
             {
                 echo ($_SESSION['user_level'] == 1)? "<span class='adminFlag'>ADM</span> ":"";
-                
                 echo 'Hello ' . $_SESSION['user_name'] . '. Not you? <a href="signout.php">Sign out</a>';
             }
             else

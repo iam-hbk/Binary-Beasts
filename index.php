@@ -1,91 +1,5 @@
 <?php include "header.php"?>
-  <div class="signUp-signIn" id="signUp-signIn">
-    <!-- Zandz's code -->
-    <div id="login_form" class="login-page">
-      <div class="box-login">
-        <span style="text-align: right" id="quit">X</span>
-        <div class="button-box">
-          <div id="move_button"></div>
-
-          <button type="button" onclick="login()" class="top_button" id="f1">
-            Sign In
-          </button>
-
-          <button type="button" onclick="signup()" class="top_button" id="s2">
-            Sign Up
-          </button>
-        </div>
-
-        <div>
-          <!--Login Information form-->
-          <form id="login" class="login_detail_line">
-            <input
-              type="text"
-              class="user_input"
-              placeholder="Email"
-              required
-            />
-            <br />
-            <input
-              type="password"
-              class="user_input"
-              placeholder="Password"
-              required
-            />
-
-            <br />
-            <br />
-            <br />
-            <br />
-            <button type="submit" id="BUTTON_">Sign In</button>
-          </form>
-        </div>
-
-        <div>
-          <!--Register Information form-->
-          <form id="signup" class="register_detail_line">
-            <input
-              type="text"
-              class="user_input"
-              placeholder="Name"
-              required
-            />
-            <input
-              type="text"
-              class="user_input"
-              placeholder="Create a username "
-              required
-            />
-            <input
-              type="email"
-              class="user_input"
-              placeholder="Email"
-              required
-            />
-            <input
-              type="password"
-              class="user_input"
-              placeholder="Password"
-              required
-            />
-            <input
-              type="password"
-              class="user_input"
-              placeholder="Confirm Password"
-              required
-            />
-
-            <br />
-            <br />
-            <br />
-            <br />
-            <button type="submit" id="BUTTON_">SIGN UP</button>
-          </form>
-        </div>
-      </div>
-    </div>
-    <!-- Zandz's code -->
-  </div>
+  
 
   <section class="section1">
     <div class="info">
@@ -98,7 +12,7 @@
       </p>
     </div>
     <div class="img">
-      <img src="images/logo-removebg-preview.png" alt="" />
+      <img src="images/logo.png" alt="" />
     </div>
   </section>
   <section class="section2">
