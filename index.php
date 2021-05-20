@@ -73,7 +73,7 @@
       >
     </div>
   </section>
-  <section class="section2">
+  <!-- <section class="section2">
     <div class="info">
       <h1>Statistics</h1>
       <p>
@@ -97,5 +97,5 @@
         alt=""
       />
     </div>
-</section>
+</section> -->
 <?php include "footer.php"?>

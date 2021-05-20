@@ -3,6 +3,13 @@
 include "connect.php";
 session_start();
 /* signIn backend */
+if(isset($_POST['radio1'])) {
+    setcookie('radio1', true, 600, '/');
+    setcookie('radio2', false, 600, '/');
+  } else if(isset($_POST['radio2'])) {
+    setcookie('radio2', true, 600, '/');
+    setcookie('radio1', false, 600, '/');
+  }
 $error_message = "";
 if (isset($_POST["signInSubmit"])) {
 
@@ -86,29 +93,42 @@ if (isset($_POST["signUpSubmit"])) {
         $username = mysqli_real_escape_string($conn, $_POST['user_name']);
         $password = sha1($_POST['user_pass']);
         $userEmail = mysqli_real_escape_string($conn, $_POST['user_email']);
-        $sql = "INSERT INTO
+        $sqlCheckUsername = "SELECT * FROM users WHERE user_name = '$username'";
+        $sqlCheckEmail = "SELECT * FROM users WHERE user_email = '$userEmail'";
+
+        $resCheckUsername = mysqli_query($conn, $sqlCheckUsername);
+        $resCheckEmail = mysqli_query($conn, $sqlCheckEmail);
+
+        if (mysqli_num_rows($resCheckUsername) > 0) {
+            $name_error = "Sorry $username has already been taken as a user name";
+        } else if (mysqli_num_rows($resCheckEmail) > 0) {
+            $name_error = "Sorry $userEmail has already been taken as a user email";
+        } else {
+            $sql = "INSERT INTO
                     users(user_name, user_pass, user_email ,user_date, user_level)
                 VALUES('$username',
-                       '$password',
-                       '$userEmail',
+                        '$password',
+                        '$userEmail',
                         NOW(),
                         1)";
 /* CREATE A DROPDOWN TO CHECK IF IT'S AN ADMIN OR NORMAL USER  */
-        $result = mysqli_query($conn, $sql);
-        if (!$result) {
-            //something went wrong, display the error
-            echo 'Something went wrong while registering. Please try again later.';
-            //echo mysql_error(); //debugging purposes, uncomment when needed
-        } else {
-            // echo 'Successfully registered. You can now Sign In and start posting! :-)';
-            header("Location: http:/Binary-Beasts/forum/signInAndUp.php");
-            exit();
+            $result = mysqli_query($conn, $sql);
+            if (!$result) {
+                //something went wrong, display the error
+                echo 'Something went wrong while registering. Please try again later.';
+                //echo mysql_error(); //debugging purposes, uncomment when needed
+            } else {
+                // echo 'Successfully registered. You can now Sign In and start posting! :-)';
+                header("Location: http:/Binary-Beasts/forum/");
+                exit();
+            }
         }
+
     }
 }
 
 $warningIcon = (empty($error_message)) ? "" : "<i class='fas fa-exclamation-triangle'></i>";
-
+$warningIconReg = (empty($name_error)) ? "" : "<i class='fas fa-exclamation-triangle'></i>";
 ?>
 
 
@@ -119,11 +139,13 @@ $warningIcon = (empty($error_message)) ? "" : "<i class='fas fa-exclamation-tria
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/e005c8a2fd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
     <link rel="stylesheet" href="signInAndUp.css">
     <title>Sign In | Sign Up</title>
 </head>
 <body>
     <div class="wrapper">
+        <a href="/Binary-Beasts/forum"><i class="fas fa-arrow-left"></i></a>
         <div class="title-text">
             <div class="title login">Sign In Form</div>
             <div class="title signup">Sign Up Form</div>
@@ -131,8 +153,8 @@ $warningIcon = (empty($error_message)) ? "" : "<i class='fas fa-exclamation-tria
 
         <div class="form-container">
         <div class="slide-controls">
-            <input type="radio" name="slider" id="login" checked>
-            <input type="radio" name="slider" id="signup">
+            <input type="radio" name="slider" id="login" >
+            <input type="radio" name="slider" id="signup" >
             <label for="login" class="slide login">Sign In</label>
             <label for="signup" class="slide signup">Sign Up</label>
             <div class="slide-tab"></div>
@@ -174,11 +196,14 @@ $warningIcon = (empty($error_message)) ? "" : "<i class='fas fa-exclamation-tria
                     <div class="field">
                         <input type="submit" name="signUpSubmit" value="Sign Up">
                     </div>
+                    <div class="error"><?php echo "$warningIconReg <span class='error'>$name_error</span>"; ?></div>
                 </form>
             </div>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
+        
         const loginForm =document.querySelector("form.login");
         const signupForm =document.querySelector("form.signup");
         const loginBtn =document.querySelector("label.login");
@@ -186,13 +211,27 @@ $warningIcon = (empty($error_message)) ? "" : "<i class='fas fa-exclamation-tria
         const signupLink =document.querySelector(".signup-link a");
         const loginTitle = document.querySelector(".title-text .login");
         const signupTitle = document.querySelector(".title-text .signup");
+        if(Cookies.get('signUp')){
+            console.log(Cookies.get());
+            console.log("here");
+            document.getElementById("signup").checked =true;
+            loginForm.style.marginLeft = "-50%";
+            loginTitle.style.marginLeft = "-50%";
+        }
+        else{
+            console.log("duh");
+        }
         signupBtn.onclick = (()=>{
             loginForm.style.marginLeft = "-50%";
             loginTitle.style.marginLeft = "-50%";
+            Cookies.set('signUp','on');
+            // console.log(Cookies.get());
         });
         loginBtn.onclick=(()=>{
             loginForm.style.marginLeft = "0%";
             loginTitle.style.marginLeft = "0%";
+            Cookies.remove('signUp');
+            // console.log(Cookies.get());
         });
         signupLink.onclick = (()=>{
             signupBtn.click();
@@ -200,7 +239,6 @@ $warningIcon = (empty($error_message)) ? "" : "<i class='fas fa-exclamation-tria
         })
 
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="forum.js"></script>
 
 </body>

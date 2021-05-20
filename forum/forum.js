@@ -1,10 +1,11 @@
 $(document).ready(() => {
+  
   /* CATEGORY HAMBURGER button functionalities*/
 
   $(".categoriesMenu").css("display", "none");
   $("#categoriesMenuIcon").click(() => {
     $(".categoriesMenu").toggle();
-    console.log("loaded !");
+
   });
   $("#categoriesMenuQuit").click(() => {
     $(".categoriesMenu").toggle();

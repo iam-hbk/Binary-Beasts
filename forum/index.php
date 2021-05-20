@@ -20,6 +20,7 @@ session_start();
           <img src="logo.png" alt="crimeline_logo" srcset="" />
         </div>
         <h2>Community</h2>
+        <h3><a href="/Binary-Beasts"><i class="fas fa-arrow-left"></i></a></h3>
       </div>
       <ul>
         <li><i class="fa fa-search" aria-hidden="true"></i></li>
@@ -27,6 +28,7 @@ session_start();
           <div class="profileContainer">
             <span id="quitProfileContainer">X</span>
             <div class="usernameInfo">Hi, <?php echo $_SESSION["user_name"] ?></div>
+            <div class="signOut Edit"><a href="signOut.php">Edit Profile <i class="fas fa-user-edit"></i><i class="fas fa-sign-out-alt"></i></a></div>
             <div class="signOut"><a href="signOut.php">Sign out <i class="fas fa-sign-out-alt"></i></a></div>
           </div>
       </li>
