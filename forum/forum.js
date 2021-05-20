@@ -42,10 +42,51 @@ $(document).ready(() => {
     // $("input[name = submitCreateTopic]").css("color","blue");
     console.log("not checked");
     $("input[name = submitCreateTopic]").attr("disabled",true);
-  } else {
-    
-
   }
-  
+
+  /* SHOW / HIDE PASSWORD */
+  /* 1 for Sign In */
+  $("#showPassword").click(()=>{
+    $("#hidePassword").toggle();
+    $("#showPassword").toggle();
+    $("#signInPassword").prop({type:"text"});
+
+  });
+  $("#hidePassword").click(()=>{
+    $("#hidePassword").toggle();
+    $("#showPassword").toggle();
+    $("#signInPassword").prop({type:"password"});
+  })
+  /* 2 for Sign Up */
+  $("#signUpPasswordShow").click(()=>{
+    console.log("in here right !");
+    $("#signUpPasswordShow").toggle();
+    $("#signUpPasswordHide").toggle();
+    $("#signUpPassword").prop({type:"text"});
+  })
+  $("#signUpPasswordHide").click(()=>{
+    $("#signUpPasswordHide").toggle();
+    $("#signUpPasswordShow").toggle();
+    $("#signUpPassword").prop({type:"password"});
+  })
+  /* 3 confirm password */
+  $("#confirmPasswordShow").click(()=>{
+    $("#confirmPasswordShow").toggle();
+    $("#confirmPasswordHide").toggle();
+    $("#confirmPassword").prop({type:"text"});
+  })
+  $("#confirmPasswordHide").click(()=>{
+    $("#confirmPasswordHide").toggle();
+    $("#confirmPasswordShow").toggle();
+    $("#confirmPassword").prop({type:"password"});
+  })
+  /* Showing users Profile */
+  $("div.profileContainer").css("display","none");
+  $("#profile").click(()=>{
+    $("div.profileContainer").toggle();
+  });
+  $("#quitProfileContainer").click(()=>{
+    $("div.profileContainer").toggle();
+  })
 
 });
