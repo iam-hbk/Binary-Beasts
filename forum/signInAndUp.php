@@ -3,13 +3,6 @@
 include "connect.php";
 session_start();
 /* signIn backend */
-if(isset($_POST['radio1'])) {
-    setcookie('radio1', true, 600, '/');
-    setcookie('radio2', false, 600, '/');
-  } else if(isset($_POST['radio2'])) {
-    setcookie('radio2', true, 600, '/');
-    setcookie('radio1', false, 600, '/');
-  }
 $error_message = "";
 if (isset($_POST["signInSubmit"])) {
 
@@ -85,7 +78,7 @@ if (isset($_POST["signUpSubmit"])) {
         foreach ($errors as $key => $value) /* walk through the array so all the errors get displayed */ {
             echo '<li>' . $value . '</li>'; /* this generates a nice error list */
         }
-        echo '</ul><br><a href="signup.php">Try again</a>';
+        echo '</ul><br><a href="signInAndUp.php">Try again</a>';
     } else {
         //the form has been posted without, so save it
         //notice the use of mysql_real_escape_string, keep everything safe!
@@ -93,35 +86,43 @@ if (isset($_POST["signUpSubmit"])) {
         $username = mysqli_real_escape_string($conn, $_POST['user_name']);
         $password = sha1($_POST['user_pass']);
         $userEmail = mysqli_real_escape_string($conn, $_POST['user_email']);
-        $sqlCheckUsername = "SELECT * FROM users WHERE user_name = '$username'";
-        $sqlCheckEmail = "SELECT * FROM users WHERE user_email = '$userEmail'";
 
-        $resCheckUsername = mysqli_query($conn, $sqlCheckUsername);
-        $resCheckEmail = mysqli_query($conn, $sqlCheckEmail);
+        if (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
+            $name_error = "The entered email is invalid ! please enter something valid.";
+        } else if (false) {
+            $name_error = "Invalid password";
 
-        if (mysqli_num_rows($resCheckUsername) > 0) {
-            $name_error = "Sorry $username has already been taken as a user name";
-        } else if (mysqli_num_rows($resCheckEmail) > 0) {
-            $name_error = "Sorry $userEmail has already been taken as a user email";
         } else {
-            $sql = "INSERT INTO
+            $sqlCheckUsername = "SELECT * FROM users WHERE user_name = '$username'";
+            $sqlCheckEmail = "SELECT * FROM users WHERE user_email = '$userEmail'";
+
+            $resCheckUsername = mysqli_query($conn, $sqlCheckUsername);
+            $resCheckEmail = mysqli_query($conn, $sqlCheckEmail);
+
+            if (mysqli_num_rows($resCheckUsername) > 0) {
+                $name_error = "Sorry $username has already been taken as a user name";
+            } else if (mysqli_num_rows($resCheckEmail) > 0) {
+                $name_error = "Sorry $userEmail has already been taken as a user email";
+            } else {
+                $sql = "INSERT INTO
                     users(user_name, user_pass, user_email ,user_date, user_level)
                 VALUES('$username',
                         '$password',
                         '$userEmail',
                         NOW(),
                         1)";
-/* CREATE A DROPDOWN TO CHECK IF IT'S AN ADMIN OR NORMAL USER  */
-            $result = mysqli_query($conn, $sql);
-            if (!$result) {
-                //something went wrong, display the error
-                echo 'Something went wrong while registering. Please try again later.';
-                //echo mysql_error(); //debugging purposes, uncomment when needed
-            } else {
-                // echo 'Successfully registered. You can now Sign In and start posting! :-)';
-                header("Location: http:/Binary-Beasts/forum/");
-                exit();
+                $result = mysqli_query($conn, $sql);
+                if (!$result) {
+                    //something went wrong, display the error
+                    echo 'Something went wrong while registering. Please try again later.';
+                    //echo mysql_error(); //debugging purposes, uncomment when needed
+                } else {
+                    // echo 'Successfully registered. You can now Sign In and start posting! :-)';
+                    header("Location: http:/Binary-Beasts/forum/");
+                    exit();
+                }
             }
+
         }
 
     }
@@ -203,7 +204,7 @@ $warningIconReg = (empty($name_error)) ? "" : "<i class='fas fa-exclamation-tria
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        
+
         const loginForm =document.querySelector("form.login");
         const signupForm =document.querySelector("form.signup");
         const loginBtn =document.querySelector("label.login");

@@ -50,14 +50,15 @@ h3{
   position: absolute;
   font-size: .99em;
   left: 20px;
-  bottom:50vh;
+  bottom:1.5vh;
 }
 h3 a{
   color: #111;
 }
 h3 a:hover{
-  color: #9e1030ff;
+  color: white;
   text-decoration: underline;
+  font-size: 1.2em;
 }
 ul {
   display: flex;
@@ -73,13 +74,16 @@ li{
   align-items: center;
 }
 div.profileContainer{
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
   border: 2px solid rgba(204, 204, 204, 0.212);
   border-top: 1px solid rgba(255, 255, 255, 0.425);
   border-right: 1px solid rgba(255, 255, 255, 0.466);
   color: rgb(0, 0, 0);
   text-shadow:0 0 15px #9e1030ff;
+  box-shadow: 0 0 10px rgb(107, 107, 107);
   text-transform: capitalize;
   backdrop-filter: blur(10px);
   background-color:rgb(255, 255, 255);

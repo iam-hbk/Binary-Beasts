@@ -29,9 +29,9 @@ body {
 .wrapper a {
   color: black;
 }
-.wrapper a :hover{
-    color: #9e1030ff;
-    font-size: 1.3em;
+.wrapper a:hover {
+  color: #9e1030ff;
+  font-size: 1.3em;
 }
 .wrapper .title-text {
   display: flex;
@@ -200,4 +200,62 @@ div.error {
 }
 div.error span {
   color: #111;
+}
+
+/* Edit profile style */
+
+.editProfile #pp {
+  font-size: 5em;
+  color: #600030ff;
+  text-align: center;
+}
+div.username {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+div.username h2{
+  text-transform: capitalize;
+}
+.fa-edit:hover {
+  cursor: pointer;
+  color: #9e1030ff;
+}
+div.username input {
+  border: none;
+  outline: none;
+  font-weight: bold;
+  width: 10vw;
+  display: none;
+}
+div.username input::placeholder {
+  color: black;
+  font-weight: 400;
+}
+.username input[type="submit"] {
+  display: none;
+  padding: 1px 5px;
+  width: 50px;
+  color: white;
+  background-color: #9e1030ff;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+div.info {
+  padding: 5px 10px;
+  margin: 5px 10px;
+  font-size: 0.9em;
+}
+div.info:not(:last-child) {
+  border-bottom: 1px solid rgb(145, 145, 145);
+}
+div.errors {
+  margin-top: 20px;
+  color: #9e1030ff;
+  text-align: center;
+  width: 20vw;
+  height: auto;
 }

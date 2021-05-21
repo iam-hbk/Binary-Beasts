@@ -28,7 +28,7 @@ session_start();
           <div class="profileContainer">
             <span id="quitProfileContainer">X</span>
             <div class="usernameInfo">Hi, <?php echo $_SESSION["user_name"] ?></div>
-            <div class="signOut Edit"><a href="signOut.php">Edit Profile <i class="fas fa-user-edit"></i><i class="fas fa-sign-out-alt"></i></a></div>
+            <div class="signOut Edit"><a href="editProfile.php">Edit Profile <i class="fas fa-user-edit"></i></i></a></div>
             <div class="signOut"><a href="signOut.php">Sign out <i class="fas fa-sign-out-alt"></i></a></div>
           </div>
       </li>
