@@ -47,7 +47,7 @@
         Velit ipsum pariatur quis porro culpa totam quod repudiandae. Vitae
         nesciunt similique quas maxime!
       </p>
-      <span class="button" id="toForum"><a href="#forum">see Forum</a></span>
+      <span class="button" id="toForum"><a href="forum/">see Forum</a></span>
     </div>
     <div class="img">
       <img src="images/forum.jpg" />

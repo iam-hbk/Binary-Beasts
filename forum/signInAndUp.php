@@ -184,10 +184,29 @@ $warningIconReg = (empty($name_error)) ? "" : "<i class='fas fa-exclamation-tria
                     <div class="field">
                         <input type="email" name="user_email" id="" placeholder="Email Address" required autocomplete="off">
                     </div>
-                    <div class="field">
-                        <input type="password" name="user_pass" id="signUpPassword" placeholder="Password" required>
+                    <div class="field form-element">
+                        <input type="password" name="user_pass" id="signUpPassword" placeholder="Password" required autocomplete="off">
                         <i id="signUpPasswordShow" class="far fa-eye"></i>
                         <i id="signUpPasswordHide" class="far fa-eye-slash"></i>
+
+                        <div class="password-policies">
+                            <div class="policy-length">
+                                Has 8 or more Characters
+                            </div>
+                            <div class="policy-number">
+                                Contains Number
+                            </div>
+                            <div class="policy-uppercase">
+                                Contains Uppercase
+                            </div>
+                            <div class="policy-special">
+                                Contains Special Characters
+                            </div>
+                            <div class="goodPassword on">
+                                You're good to go <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="field">
                         <input type="password" name="user_pass_check" id="confirmPassword" placeholder="Confirm Password" required>

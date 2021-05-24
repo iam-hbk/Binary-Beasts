@@ -47,12 +47,11 @@ if ($_SESSION["signed_in"]) {
       <div class="categoriesMenu">
         <span id="categoriesMenuQuit">X</span>
         <!-- For $i=0 ; $i < numberOfCategories ; $i++ echo Category $i -->
-        <div class="categoriesMenuItems">Temporary Data for Category 1</div>
-        <div class="categoriesMenuItems">Temporary Data for Category 2</div>
-        <div class="categoriesMenuItems">Temporary Data for Category 3</div>
-        <div class="categoriesMenuItems">Temporary Data for Category 4</div>
-        <div class="categoriesMenuItems">Temporary Data for Category 5</div>
-        <div class="categoriesMenuItems">Temporary Data for Category 6</div>
+        <?php 
+          $query = "SELECT cat_name FROM categories ";
+          $res = mysqli_query($conn,$query);
+          
+        ?>
       </div>
     </header>
     <div class="bodyWrapper">
@@ -80,7 +79,7 @@ if ($_SESSION["signed_in"]) {
 <!-- Does the title sound interesting if you read it out loud? Is it a good summary?
 Who would be interested in this? Why does it matter? What kind of responses do you want?
 Include commonly used words in your topic so others can find it. To group your topic with related topics, select a category. -->
-For more, see our <a href="Guideline.html" target="blank">community guidelines</a>.
+For more, see our <a href="Guideline.html" target="_blank">community guidelines</a>.
 </span></p>
         <form action="create_topic.php" method="post">
           <fieldset>
@@ -88,14 +87,22 @@ For more, see our <a href="Guideline.html" target="blank">community guidelines</
             <!-- For $i=0 ; $i < numberOfCategories ; $i++ echo Category $i -->
             <div id="choseCategory" class="choseCategory">Select a Category <i class="fas fa-angle-down"></i></div>
             <div class="createCategoryCategories">
-              <input class="input_radio" type="radio" name="createCategoryCategory" id="createCategoryCategory1" required >
-              <label class="radio_label" for="createCategoryCategory1">Temporary Data for Category 1</label>
+            <?php 
+            $indexCounter = 1;
+            while ($data = mysqli_fetch_assoc($res)) {
+
+              echo "<input class='input_radio' type='radio' name='createCategoryCategory' id='createCategoryCategory$indexCounter' required >
+              <label class='radio_label' for='createCategoryCategory$indexCounter'>".$data["cat_name"]."</label>";
+              $indexCounter++;
+            }
+            ?>
+              <!--
               <input class="input_radio" type="radio" name="createCategoryCategory" id="createCategoryCategory2">
               <label class="radio_label" for="createCategoryCategory2">Temporary Data for Category 2</label>
               <input class="input_radio" type="radio" name="createCategoryCategory" id="createCategoryCategory3">
               <label class="radio_label" for="createCategoryCategory3">Temporary Data for Category 3</label>
               <input class="input_radio" type="radio" name="createCategoryCategory" id="createCategoryCategory4">
-              <label class="radio_label" for="createCategoryCategory4">Temporary Data for Category 4</label>
+              <label class="radio_label" for="createCategoryCategory4">Temporary Data for Category 4</label> -->
             </div>
           </fieldset>
           <textarea required placeholder="Type your first post on this topic..." name="topicContent" id="#topicContent" cols="30" rows="10"></textarea>

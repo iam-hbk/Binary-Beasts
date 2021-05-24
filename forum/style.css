@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Marck+Script&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Marck+Script&display=swap");
 @font-face {
   font-family: "Crimeline";
   src: url(fonts/FredokaOne-Regular.ttf);
@@ -34,7 +34,6 @@ div.logo_container {
   margin-left: 10px;
 }
 
-
 div.logo_container img {
   width: 100%;
   height: 100%;
@@ -46,16 +45,16 @@ div.leftpart {
   justify-content: space-between;
   align-items: center;
 }
-h3{
+h3 {
   position: absolute;
-  font-size: .99em;
+  font-size: 0.99em;
   left: 20px;
-  bottom:1.5vh;
+  bottom: 1.5vh;
 }
-h3 a{
+h3 a {
   color: #111;
 }
-h3 a:hover{
+h3 a:hover {
   color: white;
   text-decoration: underline;
   font-size: 1.2em;
@@ -68,12 +67,12 @@ ul {
   cursor: default;
   font-weight: bold;
 }
-li{
+li {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
-div.profileContainer{
+div.profileContainer {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -82,11 +81,11 @@ div.profileContainer{
   border-top: 1px solid rgba(255, 255, 255, 0.425);
   border-right: 1px solid rgba(255, 255, 255, 0.466);
   color: rgb(0, 0, 0);
-  text-shadow:0 0 15px #9e1030ff;
+  text-shadow: 0 0 15px #9e1030ff;
   box-shadow: 0 0 10px rgb(107, 107, 107);
   text-transform: capitalize;
   backdrop-filter: blur(10px);
-  background-color:rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
   position: absolute;
   margin: 5px;
   width: 12vw;
@@ -102,7 +101,7 @@ div.profileContainer{
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
 }
-span#quitProfileContainer{
+span#quitProfileContainer {
   text-shadow: none;
   margin: 10px;
   position: absolute;
@@ -111,43 +110,42 @@ span#quitProfileContainer{
   right: 0px;
   cursor: pointer;
   font-weight: bold;
-  font-size: .68em;
+  font-size: 0.68em;
   padding: 0px 5px;
   font-weight: bold;
   /* font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif; */
 }
-span#quitProfileContainer:hover{
+span#quitProfileContainer:hover {
   border-radius: 10px;
   color: #fff;
   background-color: #9e1030ff;
 }
-#profile{
+#profile {
   font-size: 1.5em;
   cursor: pointer;
-  transition: .29s;
-  -webkit-transition: .29s;
-  -moz-transition: .29s;
-  -ms-transition: .29s;
-  -o-transition: .29s;
+  transition: 0.29s;
+  -webkit-transition: 0.29s;
+  -moz-transition: 0.29s;
+  -ms-transition: 0.29s;
+  -o-transition: 0.29s;
 }
-#profile:hover{
+#profile:hover {
   color: #9e1030ff;
   font-size: 1.7em;
-
 }
-.signOut a{
+.signOut a {
   color: #9e1030ff;
   text-shadow: 2px 0 25px rgba(158, 16, 49, 0.616);
 }
-.signOut a:hover{
-  text-decoration:underline ;
+.signOut a:hover {
+  text-decoration: underline;
 }
 ul li {
   list-style-type: none;
   font-size: 1em;
   /* position: relative; */
 }
-a{
+a {
   text-decoration: none;
 }
 .login_button {
@@ -171,13 +169,13 @@ a{
   transition: 0.4s;
   letter-spacing: 0.2em;
 }
-.fa-bars{
+.fa-bars {
   transition: 0.2s;
   font-size: 1.5em;
 }
 .fa-bars:hover {
   cursor: pointer;
-  color:#9e1030ff;
+  color: #9e1030ff;
   font-size: 1.7em;
 }
 div.categoriesMenu {
@@ -346,7 +344,7 @@ section.newTopic {
   /* border: 2px solid blue; */
   /* display: none; */
 }
-section.newTopic span.closeNewTopic{
+section.newTopic span.closeNewTopic {
   position: absolute;
   top: -25px;
   right: 50px;
@@ -358,13 +356,34 @@ section.newTopic span.closeNewTopic{
   font-weight: bold;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
-section.newTopic span.closeNewTopic:hover{
+section.newTopic span.closeNewTopic:hover {
   border-radius: 10px;
   background-color: lightgrey;
+  animation: closeNewTopic infinite linear .75s;
+  -webkit-animation: closeNewTopic infinite linear .75s;
 }
+
+@keyframes closeNewTopic {
+  0%,100% {
+    transform: translateY(0px);
+    -webkit-transform: translateY(0px);
+    -moz-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    -o-transform: translateY(0px);
+}
+  50% {
+    transform: translateY(-5px);
+    -webkit-transform: translateY(-5px);
+    -moz-transform: translateY(-5px);
+    -ms-transform: translateY(-5px);
+    -o-transform: translateY(-5px);
+    background-color: transparent;
+}
+}
+
 section.newTopic p {
   display: flex;
-  transform: translate(50px,-80px);
+  transform: translate(50px, -80px);
   justify-content: center;
   align-items: center;
   position: relative;
@@ -375,16 +394,16 @@ section.newTopic p {
   background-position: center;
   background-size: cover;
   margin: 60px 0 0 0;
-  font-family: 'Marck Script', cursive;
+  font-family: "Marck Script", cursive;
   /* font-weight: bolder; */
   letter-spacing: 1px;
   text-align: center;
-  -webkit-transform: translate(50px,-80px);
-  -moz-transform: translate(50px,-80px);
-  -ms-transform: translate(50px,-80px);
-  -o-transform: translate(50px,-80px);
+  -webkit-transform: translate(50px, -80px);
+  -moz-transform: translate(50px, -80px);
+  -ms-transform: translate(50px, -80px);
+  -o-transform: translate(50px, -80px);
 }
-p span.pin{
+p span.pin {
   margin: 20px;
   width: 75%;
 }
@@ -456,7 +475,7 @@ div.choseCategory {
 label.radio_label {
   text-align: center;
   font-family: poppins;
-  color:#fff;
+  color: #fff;
   font-size: 0.9em;
   font-weight: bold;
   padding: 8px 30px;
@@ -471,7 +490,8 @@ label.radio_label {
 label.radio_label:not(:last-child) {
   border-bottom: 2px solid lightgray;
 }
-label.radio_label:hover,input[type=radio]:checked + label.radio_label{
+label.radio_label:hover,
+input[type="radio"]:checked + label.radio_label {
   /* margin: 0; */
   color: #9e1030ff;
   background-color: #fff;
@@ -494,7 +514,7 @@ fieldset #topicName {
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
 }
-#topicName::placeholder{
+#topicName::placeholder {
   font-family: poppins;
   font-weight: bold;
 }
@@ -515,7 +535,7 @@ textarea:focus,
 input:focus {
   outline: none;
 }
-input[name="submitCreateTopic"]{
+input[name="submitCreateTopic"] {
   outline: none;
   border: 2px solid #9e1030ff;
   color: white;
@@ -533,13 +553,13 @@ input[name="submitCreateTopic"]{
   text-transform: uppercase;
   letter-spacing: 1.2px;
 }
-input[name="submitCreateTopic"]:disabled{
+input[name="submitCreateTopic"]:disabled {
   color: white;
   background-color: rgb(114, 114, 114);
   border: 2px solid rgb(255, 255, 255);
 }
 
-.ifDisabled{
+.ifDisabled {
   transition: 2s;
   position: absolute;
   top: 38px;
@@ -548,7 +568,7 @@ input[name="submitCreateTopic"]:disabled{
   height: fit-content;
   font-family: poppins;
   font-weight: bold;
-  font-size: .75em;
+  font-size: 0.75em;
   background-color: rgba(155, 155, 155, 0.534);
   color: #9e1030ff;
   transition: 0.5s;
@@ -567,7 +587,7 @@ input[name="submitCreateTopic"]:disabled{
   -ms-border-radius: 0px 20px 20px 20px;
   -o-border-radius: 0px 20px 20px 20px;
 }
-input[name="submitCreateTopic"]:disabled:hover + .ifDisabled{
+input[name="submitCreateTopic"]:disabled:hover + .ifDisabled {
   display: inline;
 }
 
