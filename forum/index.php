@@ -50,10 +50,13 @@ if ($_SESSION["signed_in"]) {
         <?php 
           $query = "SELECT cat_name FROM categories ";
           $res = mysqli_query($conn,$query);
-          
+          while($data = mysqli_fetch_assoc($res)){
+            echo "<div class='categoriesMenuItems'>".$data["cat_name"]."</div>";
+          }
         ?>
       </div>
     </header>
+    <?php  ?>
     <div class="bodyWrapper">
       <section class="titles_and_buttons">
         <div class="titles">
@@ -89,20 +92,14 @@ For more, see our <a href="Guideline.html" target="_blank">community guidelines<
             <div class="createCategoryCategories">
             <?php 
             $indexCounter = 1;
-            while ($data = mysqli_fetch_assoc($res)) {
+$things = mysqli_query($conn, $query);
+while ($data = mysqli_fetch_assoc($things)) {
+    echo "<input class='input_radio' type='radio' name='createCategoryCategory' id='createCategoryCategory$indexCounter' required >
+              <label class='radio_label' for='createCategoryCategory$indexCounter'>" . $data["cat_name"] . "</label>";
+    $indexCounter++;}
 
-              echo "<input class='input_radio' type='radio' name='createCategoryCategory' id='createCategoryCategory$indexCounter' required >
-              <label class='radio_label' for='createCategoryCategory$indexCounter'>".$data["cat_name"]."</label>";
-              $indexCounter++;
-            }
+            
             ?>
-              <!--
-              <input class="input_radio" type="radio" name="createCategoryCategory" id="createCategoryCategory2">
-              <label class="radio_label" for="createCategoryCategory2">Temporary Data for Category 2</label>
-              <input class="input_radio" type="radio" name="createCategoryCategory" id="createCategoryCategory3">
-              <label class="radio_label" for="createCategoryCategory3">Temporary Data for Category 3</label>
-              <input class="input_radio" type="radio" name="createCategoryCategory" id="createCategoryCategory4">
-              <label class="radio_label" for="createCategoryCategory4">Temporary Data for Category 4</label> -->
             </div>
           </fieldset>
           <textarea required placeholder="Type your first post on this topic..." name="topicContent" id="#topicContent" cols="30" rows="10"></textarea>

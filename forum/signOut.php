@@ -3,6 +3,6 @@ include "connect.php";
 
 session_start();
 session_destroy();
-header("Location: http:/Binary-Beasts/");
+header("Location: http:/Binary-Beasts/forum");
 exit();
 ?>
