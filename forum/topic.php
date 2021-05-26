@@ -1,93 +1,293 @@
-<link rel="stylesheet" href="style.css">
-<?php
-include "connect.php";
-include "header.php";
+<?php include "forumHeader.php";
+// session_start();
+// print_r($_SESSION[]);
 ?>
 
+<script>
+    $("div.titles").html("<?php echo $_GET["topic_subject"] ?>");
+    $("h3 a").attr("href","/Binary-Beasts/forum")
+</script>
 <style>
-div.postContainer {
-  display: grid;
-  height: fit-content;
-  width: 100%;
-  grid-template-columns: 25% 75%;
-  grid-template-rows: 85% 15%;
-}
+    body{
+        font-family: poppins !important;
+        font-weight: 800 !important;
+    }
+    div.titles{
+        font-size:3em !important;
+        font-weight:bolder !important;
+        letter-spacing:1px !important;
 
-div.postCommands {
-  grid-area: 2 / 1 / 3 / 3;
-  height: fit-content;
-  background-color:lightgrey;
-  padding: 5px;
-}
-div.postedBy {
-  grid-area: 1 / 1 / 2 / 2;
-  background-color: rgb(225, 247, 29);
-}
-div.postContent {
-  grid-area: 1 / 2 / 2 / 3;
-  background-color: darkorchid;
-  
-}
-#content{
-    /* height: 100%; */
-    overflow: hidden;
-}
-div#post_date{
-    font-size: 11px;
-    font-style: italic;
-}
+    }
+    div#topicWrapper{
+        border:2px solid #9e103031;
+        position:relative;
+        border-radius:20px;
+        padding: 15px 25px;
+        margin-top:5vw;
+    }
+    div#originalPost{
+        /* border:2px solid #9e1030ff; */
+        top: -15px;
+        left: -25px;
+        width:auto;
+        height:auto;
+        margin-right: 20%;
+        border-radius:20px;
+        padding: 15px 25px;
+        position:relative;
+        background-color: #9e103035;
+
+    }
+    #topicUserName{
+        font-size: 1.5em;
+        font-family: poppins;
+        text-decoration: underline;
+        font-weight: bold;
+    }
+    .topicTop{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .topicTopRight{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    div.topicBottom{
+        display: inline-flex;
+        justify-content: flex-end;
+        width: 100%;
+        text-transform:Capitalize; 
+        padding: 10px;
+        font-family: poppins;
+        font-weight: bold;
+
+    }
+    div.topicBottom span{
+        margin:0 15px;
+        border: 2px solid black;
+        border-radius: 10px;
+        background-color: #9e103035;
+        padding: 5px 10px;
+        color: #111;
+        cursor: pointer;
+    }
+    div.topicBottom span:not(:first-of-type){
+        background-color: rgb(11, 150, 15);
+        color: #fff;
+        border: none;
+    }
+    div.topicBottom span:last-of-type{
+        background-color: #9e1030ff;
+        color: #fff;
+        border: none;
+    }
+    .replies{
+        /* top: -15px; */
+        right: -25px;
+        width:auto;
+        height:auto;
+        border-radius:20px;
+        padding: 15px 25px;
+        margin-top: 20px;
+        margin-left: 20%;
+        position:relative;
+        background-color: #001ca635;
+
+    }
+    .reply-form{
+        padding: 0;
+        position:relative;
+        height: 180px;
+        margin-top: 20px;
+        border:2px solid #111;
+    }
+    textarea#reply-area{
+        width:45%;
+        height: 60%;
+        position: absolute;
+        top: 0;
+        right:10%;
+        margin: 0;
+        font-family: inherit;
+        font-weight: 700;
+    }
+    button{
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+    }
+    input[name="submit-reply"]{
+        position:absolute;
+        bottom:0;
+        right:10%;
+        outline: none;
+        color: white;
+        font-family: poppins;
+        padding: 5px 10px;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+        margin: 5px 20px;
+        background-color: rgb(11, 150, 15);
+        font-weight: bolder;
+        cursor: pointer;
+        text-transform: capitalize;
+        letter-spacing: 1.2px;
+    }
+    span.cancel-reply{
+        margin: 5px 20px;
+        border-radius: 10px;
+        padding: 5px 10px;
+        background-color: #9e1030ff;
+        position:absolute;
+        bottom:0;
+        right:20%;
+        color: white;
+        cursor: pointer;
+    }
 </style>
 
+
 <?php
-$sql_header = "SELECT
-    topic_id,
-    topic_subject
-    FROM
-    topics
-    WHERE
-    topics.topic_id = " . mysqli_real_escape_string($conn, $_GET['id']);
-$sql_body = "SELECT
-    posts.post_topic,
-    posts.post_content,
-    posts.post_date,
-    posts.post_by,
-    users.user_id,
-    users.user_name
-    FROM
-    posts
-    LEFT JOIN
-    users
-    ON
-    posts.post_by = users.user_id
-    WHERE
-    posts.post_topic = " . mysqli_real_escape_string($conn, $_GET['id']);
 
-$result_header = mysqli_query($conn, $sql_header);
-if (!$result_header) {
-    echo "An error occurred while fetching data for header";
-} else {
-    while ($row = mysqli_fetch_assoc($result_header)) {
-        $topic_subject = $row["topic_subject"];
-        echo "<div class='headerPost'>$topic_subject</div>";
-    }
-}
+$query = "SELECT topics.topic_subject,topics.topic_date,topics.topic_by,users.user_name,users.user_email,users.user_id
+        FROM topics,users
+        WHERE topics.topic_id = '" . $_GET["topic_id"] . "' AND topics.topic_by = users.user_id;";
+$resOriginalTopic = mysqli_query($conn, $query);
+/* if(!$resOriginalTopic){
+echo mysqli_error($conn);
+} */
+// print_r($_GET);
+// echo $_GET["topic_id_"];
+// print_r($resOriginalTopic);
+// print_r(mysqli_fetch_assoc($resOriginalTopic));
+?>
 
-$result_body = mysqli_query($conn, $sql_body);
-if (!$result_body) {echo "An error occurred while fetching data for Body";} else {
-    while ($row = mysqli_fetch_assoc($result_body)) {
-        $user_name = $row["user_name"];
-        $post_date = $row["post_date"];
-        $post_content = $row["post_content"];
-        echo <<<EOF
-        <div class='postContainer'>
-            <div class="postedBy"><div id="username">$user_name</div><div id="post_date">$post_date</div></div>
-            <div class="postContent">$post_content</div>
-            <div class="postCommands"><a href="reply.php">reply</a></div>
+<div id="topicWrapper">
+    <div id="originalPost">
+        <span class="topicTop">
+            <span class="topicTopLeft"><i style="font-size: 2em;" id ="topicUserIcon" class="fa fa-user-circle" aria-hidden="true"></i>
+            <span id="topicUserName"><?php while ($data = mysqli_fetch_assoc($resOriginalTopic)) {
+    echo $data["user_name"];
+    ?> </span></span>
+<span class="topicTopRight">
+    <?php echo $data["topic_date"];} ?>
+</span>
+
+        </span>
+
+        <div class="topicMain">
+            <?php echo "Some main content dummy data just to fill in
+                        Some main content dummy data just to fill in
+                        Some main content dummy data just to fill in
+                        Some main content dummy data just to fill in
+                        Some main content dummy data just to fill in
+                        Some main content dummy data just to fill in
+                        Some main content dummy data just to fill in
+                        Some main content dummy data just to fill in
+                        Some main content dummy data just to fill in" ?>
         </div>
+        <div class="topicBottom">
+            <span><button id='reply_0' onclick='show_reply(this.id)'  class="reply">reply <i class="fas fa-reply"></i></button></span>
+            <span class="upVote">43 <i class="fas fa-chevron-up"></i></span>
+            <span class="downVote">8 <i class="fas fa-chevron-down"></i></span>
+        </div>
+    </div>
+    <form class="reply-form" id="form_0" method="POST" action="reply.php">
+        <textarea name="reply-area" id="reply-area" cols="30" rows="10"></textarea>
+        <input type="submit" name="submit-reply" value="Post reply">
+        <span class="cancel-reply">Cancel</span>
+
+    </form>
+    <?php /* print_r($_SESSION[]); */?>
+    <?php
+    $counter = 0;
+
+for ($i = 1; $i <= 3; $i++) {
+    $html = <<<EOF
+    <div class="replies">
+        <div class="topicTop">
+            <span>2021-05-26 01:28:18</span>
+            <span class="topicTopRight"><span>USER_NAME</span>
+            <i style="font-size: 2em;" class="fa fa-user-circle" aria-hidden="true"></i></span>
+        </div>
+        <div class="topicMain">
+            Some reply content dummy data just to fill in
+            Some reply content dummy data just to fill in
+            Some reply content dummy data just to fill in
+            Some reply content dummy data just to fill in
+            Some reply content dummy data just to fill in
+            Some reply content dummy data just to fill in
+            Some reply content dummy data just to fill in
+            Some reply content dummy data just to fill in
+        </div>
+        <div class="topicBottom">
+            <span><button id='reply_$i' onclick='show_reply(this.id)'  class="reply">reply <i class="fas fa-reply"></i></button></span>
+            <span class="upVote">43 <i class="fas fa-chevron-up"></i></span>
+            <span class="downVote">8 <i class="fas fa-chevron-down"></i></span>
+        </div>
+    </div>
+    <form class="reply-form" id="form_$i" method="POST" action="reply.php">
+        <textarea name="reply-area" id="reply-area" cols="30" rows="10"></textarea>
+        <input type="submit" name="submit-reply" value="Post reply">
+        <span class="cancel-reply">Cancel</span>
+
+    </form>
     EOF;
-
-    }
-
+    echo $html;
 }
 
-include "footer.php";
+?>
+</div>
+<?php /* print_r($_SESSION); */?>
+
+<script>
+    var previous = 0;
+    function show_reply(value){
+        console.log("running")
+        arr = value.split('_');
+        btn_id = arr[1];
+        reply_id = '#'+"form_"+btn_id;
+        console.log(reply_id)
+
+        forms = document.querySelectorAll(".reply-form");
+        forms.forEach((form) => {
+            form.style.display = 'none';
+        })
+
+
+        $(reply_id).show();
+    }
+
+    $(document).ready(()=>{
+
+        
+
+        forms = document.querySelectorAll(".reply-form");
+        forms.forEach((form) => {
+            form.style.display = 'none';
+        })
+        var cancels = document.querySelectorAll(".cancel-reply");
+        cancels.forEach((cancel)=>{
+            cancel.addEventListener("click",()=>{
+                forms = document.querySelectorAll(".reply-form");
+                forms.forEach((form) => {
+                    form.style.display = 'none';
+                })
+            })
+        })
+        
+        $("label.reply").click(()=>{
+            console.log($("label.reply").prev().data());
+        })
+    });
+
+</script>
+
+
+
+<?php include "forumFooter.php"?>

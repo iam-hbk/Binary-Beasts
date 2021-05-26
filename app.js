@@ -2,11 +2,12 @@
 window.addEventListener("scroll", function () {
     var header = document.querySelector("header");
     header.classList.toggle("sticky", window.scrollY > 5);
+    
   });
 
 
 
-
+/*
 // login toggle part JS
 $("#signUp-signIn").css("display","none");
 $(document).ready(() => {
@@ -74,7 +75,7 @@ window.onclick = function(event)
         Log_.style.display;
     }
 }
-
+*/
 // End of login behaviour JS
 
 // search command JS

@@ -14,12 +14,14 @@
         </div>
       </div>
       <div class="disclaimer">
-        <h5>Disclaimer</h5>
+        <h5></h5>
         <p class="disclaimerText">
           We empower people to speak up and make a difference We want to assure
           you that you are not alone and that there are people who want to help,
           just let us know what you need and we will link you to trained
           professionals who are willing to listen and lend you a helping hand.
+          <br><br>
+          &#169;Crimeline 2021, All rights reserved.
         </p>
       </div>
       <div class="followUs">

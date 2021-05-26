@@ -1,3 +1,4 @@
+<?php include "forum/connect.php"; session_start();?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,7 +19,7 @@
 
   <body>    <header>
       <div class="logo">
-        <img src="images/logo-removebg-preview.png" alt="" srcset="" />
+        <img src="images/logo.png" alt="Crimeline logo" srcset="" />
       </div>
       <div class="tabs">
         <span class="tab"
@@ -37,9 +38,9 @@
             >Get Help</a
           ></span
         >
-        <span class="tab"
+        <!-- <span class="tab"
           ><a class="anchorHeader" id="stats" href="#stats">Statistics</a></span
-        >
+        > -->
         <span class="tab"
           ><a class="anchorHeader" id="about" href="#footer">About</a></span
         >
@@ -54,7 +55,5 @@
           ><i class="fa fa-search" aria-hidden="true"></i
         ></label>
       </div>
-      <div onclick="displaySignIn_SignUp()" id="SignIn_SignUp" class="logins">
-        <a href="#signInSignUp">Sign In | Sign Up</a>
-      </div>
-    </header>
+      
+          </header>

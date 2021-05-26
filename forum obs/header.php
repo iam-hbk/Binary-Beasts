@@ -7,10 +7,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="nl" lang="nl">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="description" content="A short description." />
-    <meta name="keywords" content="put, keywords, here" />
-    <title>PHP-MySQL forum</title>
+    <meta name="keywords" content="Crimeline, report, crime" />
+    <title>CRIMELINE | FORUM</title>
     <link rel="stylesheet" href="style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <h1>Crimeline Forum</h1>
@@ -26,7 +26,6 @@
             if($_SESSION['signed_in'])
             {
                 echo ($_SESSION['user_level'] == 1)? "<span class='adminFlag'>ADM</span> ":"";
-                
                 echo 'Hello ' . $_SESSION['user_name'] . '. Not you? <a href="signout.php">Sign out</a>';
             }
             else
