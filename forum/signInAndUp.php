@@ -12,7 +12,8 @@ if (isset($_POST["signInSubmit"])) {
     $sql = "SELECT
                         user_id,
                         user_name,
-                        user_level
+                        user_level,
+                        user_email
                     FROM
                         users
                     WHERE
@@ -40,6 +41,7 @@ if (isset($_POST["signInSubmit"])) {
                 $_SESSION['user_id'] = $row['user_id'];
                 $_SESSION['user_name'] = $row['user_name'];
                 $_SESSION['user_level'] = $row['user_level'];
+                $_SESSION['user_email'] = $row['user_email'];
             }
 
             header("Location: http:/Binary-Beasts/forum");

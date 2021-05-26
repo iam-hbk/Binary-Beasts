@@ -635,10 +635,10 @@ td#tableDataUsers .fa {
   font-size: 1.5em;
 }
 td a.toTopicLink{
-  color:#111;
+  color:rgb(0, 0, 0);
 }
 td a.toTopicLink:hover{
-  text-decoration:underline;
+  text-decoration:underline #0000009a;
 }
 tr.rowData td {
   padding: 20px /* 0 5px 20px */;

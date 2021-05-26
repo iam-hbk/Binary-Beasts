@@ -22,12 +22,11 @@ $(document).ready(() => {
   /* Select category functionalities */
   $(".createCategoryCategories").css("display", "none");
   var checkButtonLabel = $("label.radio_label");
-  // console.log(checkButtonLabel);
   $("#choseCategory").click(() => {
     $(".createCategoryCategories").toggle(200, "linear");
   });
   checkButtonLabel.click(() => {
-    console.log($("input[type=radio]:checked").val());
+    // console.log($("input[type=radio]:checked").val());
     $(".createCategoryCategories").toggle(300, "swing");
     setTimeout(() => {
       $("#choseCategory").html(
