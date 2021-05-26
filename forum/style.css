@@ -590,6 +590,22 @@ input[name="submitCreateTopic"]:disabled {
 input[name="submitCreateTopic"]:disabled:hover + .ifDisabled {
   display: inline;
 }
+.isTopicCreated{
+  padding: 5px 10px;
+  background-color: rgb(9, 122, 13);
+  font-weight: 400;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  display: grid;
+  place-items: center;
+  margin: 15px 42%;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
 
 /* END OF CREATE TOPIC STYLE */
 /* SECTION HAVING TABLE STYLE */
@@ -617,6 +633,12 @@ th {
 td#tableDataUsers .fa {
   margin: 0;
   font-size: 1.5em;
+}
+td a.toTopicLink{
+  color:#111;
+}
+td a.toTopicLink:hover{
+  text-decoration:underline;
 }
 tr.rowData td {
   padding: 20px /* 0 5px 20px */;

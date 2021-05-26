@@ -56,7 +56,15 @@ if ($_SESSION["signed_in"]) {
         ?>
       </div>
     </header>
-    <?php  ?>
+    <section style = "display:none" class="phpVariablesForJs"><span id="session_signed_in"><?php echo ($_SESSION["signed_in"])? "true":"" ?></span></section>
+    <?php
+    if($_SESSION["isTopicCreated"]){
+      echo '<div class="isTopicCreated">Topic created Successfully</div>';
+      unset($_SESSION["isTopicCreated"]);
+      echo $_SESSION["isTopicCreated"];
+    }
+      ?>
+      
     <div class="bodyWrapper">
       <section class="titles_and_buttons">
         <div class="titles">
@@ -90,11 +98,11 @@ For more, see our <a href="Guideline.html" target="_blank">community guidelines<
             <!-- For $i=0 ; $i < numberOfCategories ; $i++ echo Category $i -->
             <div id="choseCategory" class="choseCategory">Select a Category <i class="fas fa-angle-down"></i></div>
             <div class="createCategoryCategories">
-            <?php 
+            <?php
             $indexCounter = 1;
 $things = mysqli_query($conn, $query);
 while ($data = mysqli_fetch_assoc($things)) {
-    echo "<input class='input_radio' type='radio' name='createCategoryCategory' id='createCategoryCategory$indexCounter' required >
+    echo "<input class='input_radio' type='radio' name='createCategoryCategory' value='".$data["cat_name"]."' id='createCategoryCategory$indexCounter' required >
               <label class='radio_label' for='createCategoryCategory$indexCounter'>" . $data["cat_name"] . "</label>";
     $indexCounter++;}
 
@@ -104,8 +112,10 @@ while ($data = mysqli_fetch_assoc($things)) {
           </fieldset>
           <textarea required placeholder="Type your first post on this topic..." name="topicContent" id="#topicContent" cols="30" rows="10"></textarea>
           <div class="createTopicSubmit" style="position: relative;">
-            <input name="submitCreateTopic" type="submit" value=" + Create Topic">
+          
+            <input disabled name="submitCreateTopic" type="submit" value=" + Create Topic">
             <span class="ifDisabled">Select a category to enable this button</span>
+            
           </div>
         </form>
 
@@ -132,36 +142,65 @@ while ($data = mysqli_fetch_assoc($things)) {
           </thead>
 <?php
 
+$query = "SELECT topics.topic_id,topics.topic_subject,categories.cat_name,topic_date
+          FROM topics,categories 
+          WHERE topics.topic_cat = categories.cat_id ORDER BY topic_date DESC";
+$res = mysqli_query($conn,$query);
+
 $evenRows = '<tr class="rowData">';
 $oddRows = '<tr class="rowData odd">';
-$html = <<<EOF
-  <td>Fake data of a topic name</td>
-  <td>Fake data of a category</td>
-  <td id="tableDataUsers">
-    <i class="fa fa-user-circle" aria-hidden="true"></i
-    ><i class="fa fa-user-circle" aria-hidden="true"></i
-    ><i class="fa fa-user-circle" aria-hidden="true"></i>
-    <span id="plusNumbers">+87</span>
-  </td>
-  <!--3 avatars plus # of users -->
-  <td>112</td>
-  <!-- # of replies in this specific topic -->
-  <td>6h</td>
-  <!-- = Date.now() minus Date of last post -->
-</tr>
-EOF;
-for ($i = 0; $i < 10; $i++) {
-    if ($i % 2 == 0) {
-        echo $oddRows . $html;
-    } else {
-        echo $evenRows . $html;
-    }
+
+
+
+$iterator = 0;
+while($data = mysqli_fetch_assoc($res)){
+  $tId = $data["topic_id"];
+  $tsubject = $data["topic_subject"];
+  $tcat = $data["cat_name"];
+  $tdate = $data["topic_date"];
+  $start_date = new DateTime($tdate);
+  $since_start = $start_date->diff(new DateTime());
+  $newTdate = ($since_start->y > 0 ? $since_start->y.' years ago' :
+    ($since_start->m > 0 ? $since_start->m.'months ago':
+    ($since_start->d > 0 ? $since_start->d.'days ago'  :
+    ($since_start->h > 0 ? $since_start->h.'h ago'     :
+    ($since_start->i > 0 ? $since_start->i.'m ago'     :
+    ($since_start->s > 0 ? $since_start->s.'s ago': '-' ))))))
+    ;
+  
+    $html = <<<EOF
+    <td><a class="toTopicLink" href="topic.php?topic_id = $tId" >$tsubject</a></td>
+    <td>$tcat</td>
+    <td id="tableDataUsers">
+      <i class="fa fa-user-circle" aria-hidden="true"></i
+      ><i class="fa fa-user-circle" aria-hidden="true"></i
+      ><i class="fa fa-user-circle" aria-hidden="true"></i>
+      <span id="plusNumbers">+87</span>
+    </td>
+    <!--3 avatars plus # of users -->
+    <td>112</td>
+    <!-- # of replies in this specific topic -->
+    <td>$newTdate</td>
+  </tr>
+  EOF;
+      if ($iterator % 2 == 0) {
+          echo $oddRows . $html;
+      } else {
+          echo $evenRows . $html;
+      }
+
+  $iterator++;
 }
+
 ?>
         </table>
       </section>
     </div>
+
+    <!-- TEST STUFF HERE -->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="forum.js"></script>
+    
   </body>
 </html>

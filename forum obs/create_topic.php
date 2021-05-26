@@ -67,14 +67,14 @@ if ($_SESSION['signed_in'] == false) {
             $topic_cat = mysqli_real_escape_string($conn, $_POST['topic_cat']);
             $sql = "INSERT INTO
                         topics(topic_subject,
-                               topic_date,
-                               topic_cat,
-                               topic_by)
-                   VALUES('$topic_subject',
-                               NOW(),
-                               '$topic_cat',
-                               " . $_SESSION['user_id'] . "
-                               )";
+                        topic_date,
+                        topic_cat,
+                        topic_by)
+                    VALUES('$topic_subject',
+                            NOW(),
+                            '$topic_cat',
+                            " . $_SESSION['user_id'] . "
+                            )";
 
             $result = mysqli_query($conn, $sql);
             if (!$result) {
@@ -89,14 +89,14 @@ if ($_SESSION['signed_in'] == false) {
 
                 $sql = "INSERT INTO
                             posts(post_content,
-                                  post_date,
-                                  post_topic,
-                                  post_by)
+                            post_date,
+                            post_topic,
+                            post_by)
                         VALUES
                             ('" . mysqli_real_escape_string($conn,$_POST['post_content']) . "',
-                                  NOW(),
-                                  " . $topic_id . ",
-                                  " . $_SESSION['user_id'] . "
+                                NOW(),
+                                " . $topic_id . ",
+                                " . $_SESSION['user_id'] . "
                             )";
                 $result = mysqli_query($conn,$sql);
 

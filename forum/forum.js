@@ -3,10 +3,10 @@ $(document).ready(() => {
 
   $(".categoriesMenu").css("display", "none");
   $("#categoriesMenuIcon").click(() => {
-    $(".categoriesMenu").toggle(300,"swing");
+    $(".categoriesMenu").toggle(300, "swing");
   });
   $("#categoriesMenuQuit").click(() => {
-    $(".categoriesMenu").toggle(300,"swing");
+    $(".categoriesMenu").toggle(300, "swing");
   });
 
   /* +NEW TOPIC functionalities */
@@ -14,37 +14,43 @@ $(document).ready(() => {
   console.log("loaded !");
   $(".new_topic_button").click(() => {
     console.log("clicked !");
-    $(".newTopic").toggle(300,"linear");
+    $(".newTopic").toggle(300, "linear");
   });
   $(".closeNewTopic").click(() => {
-    $(".newTopic").toggle(300,"swing");
+    $(".newTopic").toggle(300, "swing");
   });
   /* Select category functionalities */
   $(".createCategoryCategories").css("display", "none");
   var checkButtonLabel = $("label.radio_label");
-  console.log(checkButtonLabel);
+  // console.log(checkButtonLabel);
   $("#choseCategory").click(() => {
-    $(".createCategoryCategories").toggle(200,"linear");
+    $(".createCategoryCategories").toggle(200, "linear");
   });
   checkButtonLabel.click(() => {
     console.log($("input[type=radio]:checked").val());
-    $(".createCategoryCategories").toggle(300,"swing");
+    $(".createCategoryCategories").toggle(300, "swing");
     setTimeout(() => {
       $("#choseCategory").html(
         $("input[type=radio]:checked + label.radio_label").html() +
           " <i class='fas fa-angle-down'>"
       );
-      $("input[name = submitCreateTopic]").removeAttr("disabled");
+      if (!($("#session_signed_in").html() == "true")) {
+        console.log("user_not_signed in");
+        $(".ifDisabled").html("You need to be signed in to activate this button");
+      }else{
+        console.log("signed_in");
+        $("input[name = submitCreateTopic]").removeAttr("disabled");
+      }
       console.log("in setTime");
     }, 2);
     console.log($("input[type=radio]:checked").val());
   });
-  /* Functionalities for create topic DISABLED/ENABLED */
-  if (!$("input[type=radio]:checked").val()) {
-    // $("input[name = submitCreateTopic]").css("color","blue");
-    console.log("not checked");
-    $("input[name = submitCreateTopic]").attr("disabled", true);
-  }
+  /* TOPIC CREATED SUCCESSFULLY */
+
+  $(".isTopicCreated").show();
+  setTimeout(() => {
+    $(".isTopicCreated").hide();
+  }, 2000);
 
   /* SHOW / HIDE PASSWORD */
   /* 1 for Sign In */
@@ -98,7 +104,6 @@ $(document).ready(() => {
   function _class(name) {
     return document.getElementsByClassName(name);
   }
-  
 
   _id("signUpPassword").addEventListener("focus", function () {
     _class("password-policies")[0].classList.add("active");
@@ -112,7 +117,6 @@ $(document).ready(() => {
 
     if (/[A-Z]/.test(password)) {
       _class("policy-uppercase")[0].classList.add("active");
-
     } else {
       _class("policy-uppercase")[0].classList.remove("active");
     }
@@ -135,4 +139,11 @@ $(document).ready(() => {
       _class("policy-length")[0].classList.remove("active");
     }
   });
+
+
+  /* CREATE TOPIC INPUT VALIDATION & HINTS */
+  
 });
+
+
+
