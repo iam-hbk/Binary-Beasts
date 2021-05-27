@@ -52,86 +52,64 @@ if (isset($_POST["signInSubmit"])) {
 }
 /* signUp backend */
 if (isset($_POST["signUpSubmit"])) {
-    $errors = array(); /* declare the array for later use */
+    //the form has been posted without, so save it
+    //notice the use of mysql_real_escape_string, keep everything safe!
+    //also notice the sha1 function which hashes the password
+    $username = mysqli_real_escape_string($conn, $_POST['user_name']);
+    $password = sha1($_POST['user_pass']);
+    $confPass = sha1($_POST['user_pass_check']);
+    $userEmail = mysqli_real_escape_string($conn, $_POST['user_email']);
 
-    if (isset($_POST['user_name'])) {
-        //the user name exists
-        if (!ctype_alnum($_POST['user_name'])) {
-            $errors[] = 'The username can only contain letters and digits.';
-        }
-        if (strlen($_POST['user_name']) > 12) {
-            $errors[] = 'The username cannot be longer than 30 characters.';
-        }
+    if (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
+        $name_error = "The entered email is invalid ! please enter something valid.";
+        $warningIconReg = (empty($name_error)) ? "" : "<i class='fas fa-exclamation-triangle'></i>";
+    } else if ($password!=$confPass) {
+        $name_error = "The two passwords did not match";
+        $warningIconReg = (empty($name_error)) ? "" : "<i class='fas fa-exclamation-triangle'></i>";
+
     } else {
-        $errors[] = 'The username field must not be empty.';
-    }
+        $sqlCheckUsername = "SELECT * FROM users WHERE user_name = '$username'";
+        $sqlCheckEmail = "SELECT * FROM users WHERE user_email = '$userEmail'";
 
-    if (isset($_POST['user_pass'])) {
-        if ($_POST['user_pass'] != $_POST['user_pass_check']) {
-            $errors[] = 'The two passwords did not match.';
-        }
-    } else {
-        $errors[] = 'The password field cannot be empty.';
-    }
+        $resCheckUsername = mysqli_query($conn, $sqlCheckUsername);
+        $resCheckEmail = mysqli_query($conn, $sqlCheckEmail);
 
-    if (!empty($errors)) /*check for an empty array, if there are errors, they're in this array (note the ! operator)*/ {
-        echo 'Uh-oh.. a couple of fields are not filled in correctly..';
-        echo '<ul>';
-        foreach ($errors as $key => $value) /* walk through the array so all the errors get displayed */ {
-            echo '<li>' . $value . '</li>'; /* this generates a nice error list */
-        }
-        echo '</ul><br><a href="signInAndUp.php">Try again</a>';
-    } else {
-        //the form has been posted without, so save it
-        //notice the use of mysql_real_escape_string, keep everything safe!
-        //also notice the sha1 function which hashes the password
-        $username = mysqli_real_escape_string($conn, $_POST['user_name']);
-        $password = sha1($_POST['user_pass']);
-        $userEmail = mysqli_real_escape_string($conn, $_POST['user_email']);
-
-        if (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
-            $name_error = "The entered email is invalid ! please enter something valid.";
-        } else if (false) {
-            $name_error = "Invalid password";
-
+        if (mysqli_num_rows($resCheckUsername) > 0) {
+            $name_error = "Sorry $username has already been taken as a user name";
+            $warningIconReg = (empty($name_error)) ? "" : "<i class='fas fa-exclamation-triangle'></i>";
+        } else if (mysqli_num_rows($resCheckEmail) > 0) {
+            $name_error = "Sorry $userEmail has already been taken as a user email";
+            $warningIconReg = (empty($name_error)) ? "" : "<i class='fas fa-exclamation-triangle'></i>";
         } else {
-            $sqlCheckUsername = "SELECT * FROM users WHERE user_name = '$username'";
-            $sqlCheckEmail = "SELECT * FROM users WHERE user_email = '$userEmail'";
-
-            $resCheckUsername = mysqli_query($conn, $sqlCheckUsername);
-            $resCheckEmail = mysqli_query($conn, $sqlCheckEmail);
-
-            if (mysqli_num_rows($resCheckUsername) > 0) {
-                $name_error = "Sorry $username has already been taken as a user name";
-            } else if (mysqli_num_rows($resCheckEmail) > 0) {
-                $name_error = "Sorry $userEmail has already been taken as a user email";
+            $sql = "INSERT INTO
+                users(user_name, user_pass, user_email ,user_date, user_level)
+            VALUES('$username',
+                    '$password',
+                    '$userEmail',
+                    NOW(),
+                    1)";
+            $result = mysqli_query($conn, $sql);
+            if (!$result) {
+                //something went wrong, display the error
+                echo 'Something went wrong while registering. Please try again later.';
+                //echo mysql_error(); //debugging purposes, uncomment when needed
             } else {
-                $sql = "INSERT INTO
-                    users(user_name, user_pass, user_email ,user_date, user_level)
-                VALUES('$username',
-                        '$password',
-                        '$userEmail',
-                        NOW(),
-                        1)";
-                $result = mysqli_query($conn, $sql);
-                if (!$result) {
-                    //something went wrong, display the error
-                    echo 'Something went wrong while registering. Please try again later.';
-                    //echo mysql_error(); //debugging purposes, uncomment when needed
-                } else {
-                    // echo 'Successfully registered. You can now Sign In and start posting! :-)';
-                    header("Location: http:/Binary-Beasts/forum/");
-                    exit();
-                }
+                // echo 'Successfully registered. You can now Sign In and start posting! :-)';
+                
+                $_SESSION["isTopicCreated"] = true;
+                header("Location: http:/Binary-Beasts/forum/signInAndUp.php");
+                exit();
             }
-
         }
 
     }
+
+    
 }
 
 $warningIcon = (empty($error_message)) ? "" : "<i class='fas fa-exclamation-triangle'></i>";
 $warningIconReg = (empty($name_error)) ? "" : "<i class='fas fa-exclamation-triangle'></i>";
+
 ?>
 
 
@@ -147,6 +125,21 @@ $warningIconReg = (empty($name_error)) ? "" : "<i class='fas fa-exclamation-tria
     <title>Sign In | Sign Up</title>
 </head>
 <body>
+    
+    <?php
+    // echo '<div class="isTopicCreated" id="successfully">
+    //         <i class="fas fa-check-circle"></i> 
+    //         Your account has been created successfully, you can now SIGN IN !
+    //     </div>';
+        if($_SESSION["isTopicCreated"]){
+            echo '<div class="isTopicCreated" id="successfully">
+                    <i class="fas fa-check-circle"></i> 
+                    Your account has been created successfully, you can now SIGN IN !
+                </div>' ;
+            unset($_SESSION["isTopicCreated"]);
+
+          }
+    ?>
     <div class="wrapper">
         <a href="/Binary-Beasts/forum"><i class="fas fa-arrow-left"></i></a>
         <div class="title-text">
@@ -204,9 +197,9 @@ $warningIconReg = (empty($name_error)) ? "" : "<i class='fas fa-exclamation-tria
                             <div class="policy-special">
                                 Contains Special Characters
                             </div>
-                            <div class="goodPassword on">
+                            <!-- <div class="goodPassword on">
                                 You're good to go <i class="fas fa-check-circle"></i>
-                            </div>
+                            </div> -->
                         </div>
 
                     </div>

@@ -1,6 +1,7 @@
 <?php include "forumHeader.php";
 // session_start();
 // print_r($_SESSION[]);
+$_SESSION["topic_subject"] = $_GET["topic_subject"];
 ?>
 
 <script>
@@ -58,18 +59,19 @@
         display: inline-flex;
         justify-content: flex-end;
         width: 100%;
-        text-transform:Capitalize; 
+        text-transform:Capitalize;
         padding: 10px;
         font-family: poppins;
         font-weight: bold;
 
     }
     div.topicBottom span{
+        position: relative;
         margin:0 15px;
         border: 2px solid black;
         border-radius: 10px;
         background-color: #9e103035;
-        padding: 5px 10px;
+        padding: 0;
         color: #111;
         cursor: pointer;
     }
@@ -77,11 +79,13 @@
         background-color: rgb(11, 150, 15);
         color: #fff;
         border: none;
+        padding: 5px 10px;
     }
     div.topicBottom span:last-of-type{
         background-color: #9e1030ff;
         color: #fff;
         border: none;
+        padding: 5px 10px;
     }
     .replies{
         /* top: -15px; */
@@ -101,7 +105,6 @@
         position:relative;
         height: 180px;
         margin-top: 20px;
-        border:2px solid #111;
     }
     textarea#reply-area{
         width:45%;
@@ -115,8 +118,14 @@
     }
     button{
         border: none;
+        position: relative;
+        top: 0;
+        left: 0;
+        padding: 5px 10px;
         background-color: transparent;
         cursor: pointer;
+        width: 100%;
+        height: 100%;
     }
     input[name="submit-reply"]{
         position:absolute;
@@ -138,6 +147,20 @@
         text-transform: capitalize;
         letter-spacing: 1.2px;
     }
+    input[name="submit-reply"]:disabled{
+        position: relative;
+        background-color: #fff;
+        color: #9e1030ff;
+        border: none;
+        font-weight: bold;
+        cursor: default;
+    }
+    span#reply-disabled{
+        bottom: 0;
+        right: 5%;
+        position: absolute;
+
+    }
     span.cancel-reply{
         margin: 5px 20px;
         border-radius: 10px;
@@ -148,6 +171,11 @@
         right:20%;
         color: white;
         cursor: pointer;
+    }
+    span#no-replies{
+        font-style: italic;
+        display: inline-block;
+        text-align: center;
     }
 </style>
 
@@ -174,22 +202,22 @@ echo mysqli_error($conn);
             <span id="topicUserName"><?php while ($data = mysqli_fetch_assoc($resOriginalTopic)) {
     echo $data["user_name"];
     ?> </span></span>
-<span class="topicTopRight">
-    <?php echo $data["topic_date"];} ?>
-</span>
+    <span class="topicTopRight">
+        <?php echo $data["topic_date"];} ?>
+    </span>
 
         </span>
 
         <div class="topicMain">
-            <?php echo "Some main content dummy data just to fill in
-                        Some main content dummy data just to fill in
-                        Some main content dummy data just to fill in
-                        Some main content dummy data just to fill in
-                        Some main content dummy data just to fill in
-                        Some main content dummy data just to fill in
-                        Some main content dummy data just to fill in
-                        Some main content dummy data just to fill in
-                        Some main content dummy data just to fill in" ?>
+            <?php
+            $q = "SELECT * FROM posts WHERE post_topic = '".$_GET["topic_id"]."'";
+            $r = mysqli_query($conn,$q);
+            
+            while($data = mysqli_fetch_assoc($r)){
+                echo $data["post_content"];
+            }
+
+            ?>
         </div>
         <div class="topicBottom">
             <span><button id='reply_0' onclick='show_reply(this.id)'  class="reply">reply <i class="fas fa-reply"></i></button></span>
@@ -198,54 +226,68 @@ echo mysqli_error($conn);
         </div>
     </div>
     <form class="reply-form" id="form_0" method="POST" action="reply.php">
-        <textarea name="reply-area" id="reply-area" cols="30" rows="10"></textarea>
-        <input type="submit" name="submit-reply" value="Post reply">
+        <textarea placeholder="Type your reply here..." required name="reply-area" id="reply-area" cols="30" rows="10"></textarea>
+        <?php $_SESSION["topic_id"] = $_GET["topic_id"]; ?>
+        <?php echo ($_SESSION["signed_in"])? '<input type="submit" name="submit-reply" value="Post reply" >' :
+        '<span id ="reply-disabled"><i class="fas fa-exclamation-triangle"></i><input type="submit" name="submit-reply" value="Sign In to reply" disabled ></span>'  ?>
+        
         <span class="cancel-reply">Cancel</span>
 
     </form>
-    <?php /* print_r($_SESSION[]); */?>
     <?php
-    $counter = 0;
+    $query="SELECT post_id,post_date,post_content,users.user_name 
+            FROM posts,users 
+            WHERE (isMainTopic = 0 AND users.user_id = posts.post_by)
+            AND (post_topic)='".$_GET["topic_id"]."'
+            ORDER BY post_date DESC;";
+    $res = mysqli_query($conn,$query);
 
-for ($i = 1; $i <= 3; $i++) {
-    $html = <<<EOF
-    <div class="replies">
-        <div class="topicTop">
-            <span>2021-05-26 01:28:18</span>
-            <span class="topicTopRight"><span>USER_NAME</span>
-            <i style="font-size: 2em;" class="fa fa-user-circle" aria-hidden="true"></i></span>
-        </div>
-        <div class="topicMain">
-            Some reply content dummy data just to fill in
-            Some reply content dummy data just to fill in
-            Some reply content dummy data just to fill in
-            Some reply content dummy data just to fill in
-            Some reply content dummy data just to fill in
-            Some reply content dummy data just to fill in
-            Some reply content dummy data just to fill in
-            Some reply content dummy data just to fill in
-        </div>
-        <div class="topicBottom">
-            <span><button id='reply_$i' onclick='show_reply(this.id)'  class="reply">reply <i class="fas fa-reply"></i></button></span>
-            <span class="upVote">43 <i class="fas fa-chevron-up"></i></span>
-            <span class="downVote">8 <i class="fas fa-chevron-down"></i></span>
-        </div>
-    </div>
-    <form class="reply-form" id="form_$i" method="POST" action="reply.php">
-        <textarea name="reply-area" id="reply-area" cols="30" rows="10"></textarea>
-        <input type="submit" name="submit-reply" value="Post reply">
-        <span class="cancel-reply">Cancel</span>
+    $i = 1;
 
-    </form>
-    EOF;
-    echo $html;
-}
+        if(mysqli_num_rows($res)<1){
+            echo "<span id='no-replies'>There's no reply yet, be the first !</span>";
+        }else{
+            while($data = mysqli_fetch_assoc($res)) {
+                $post_date = $data["post_date"];
+                $user_name = $data["user_name"];
+                $post_content = $data["post_content"];
+                $html = <<<EOF
+                <div class="replies">
+                    <div class="topicTop">
+                        <span>$post_date</span>
+                        <span class="topicTopRight"><span>$user_name</span>
+                        <i style="font-size: 2em;" class="fa fa-user-circle" aria-hidden="true"></i></span>
+                    </div>
+                    <div class="topicMain">
+                        $post_content
+                    </div>
+                    <div class="topicBottom">
+                        <span><button id='reply_$i' onclick='show_reply(this.id)'  class="reply">reply <i class="fas fa-reply"></i></button></span>
+                        <span class="upVote">43 <i class="fas fa-chevron-up"></i></span>
+                        <span class="downVote">8 <i class="fas fa-chevron-down"></i></span>
+                    </div>
+                </div>
+                <form class="reply-form" id="form_$i" method="POST" action="replyOfReply.php">
+                    <textarea placeholder="Type your reply here..." required name="reply-area" id="reply-area" cols="30" rows="10"></textarea>
+                    
+                EOF;
+                $sI = '<input type="submit" name="submit-reply" value="Post reply">
+                <span class="cancel-reply">Cancel</span></form>';
+                $sO = '<span id ="reply-disabled"><i class="fas fa-exclamation-triangle"></i>
+                <input type="submit" name="submit-reply" value="Sign In to reply" disabled ></span>
+                <span class="cancel-reply">Cancel</span></form>';
+                echo ($_SESSION["signed_in"])? $html.$sI:$html.$sO;
+            }
+        }
 
-?>
+    ?>
 </div>
-<?php /* print_r($_SESSION); */?>
+
 
 <script>
+
+
+
     var previous = 0;
     function show_reply(value){
         console.log("running")
@@ -260,12 +302,16 @@ for ($i = 1; $i <= 3; $i++) {
         })
 
 
-        $(reply_id).show();
+        if($(reply_id).is(":visible")){
+            $(reply_id).hide(300,"swing");
+        }else{
+            $(reply_id).show(300,"swing");
+        }
     }
 
     $(document).ready(()=>{
 
-        
+
 
         forms = document.querySelectorAll(".reply-form");
         forms.forEach((form) => {
@@ -280,7 +326,7 @@ for ($i = 1; $i <= 3; $i++) {
                 })
             })
         })
-        
+
         $("label.reply").click(()=>{
             console.log($("label.reply").prev().data());
         })

@@ -49,7 +49,7 @@ $(document).ready(() => {
   $(".isTopicCreated").show();
   setTimeout(() => {
     $(".isTopicCreated").hide();
-  }, 2000);
+  }, 4000);
 
   /* SHOW / HIDE PASSWORD */
   /* 1 for Sign In */
