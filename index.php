@@ -63,6 +63,7 @@
         you there is something wrong with you: there is nothing wrong with you. The reactions you 
         experience because of trauma are only responses— they are not who you are. Crime-Line’s GET HELP 
         offers a variety of support groups and legal representation that can be your first step to healing.
+        Crime-Line’s GET HELP offers a variety of support groups and legal representation that can be your first step to healing. 
       </p>
       <span class="button" id="toGetHelp"
         ><a href="#getHelp">Get Help</a></span
