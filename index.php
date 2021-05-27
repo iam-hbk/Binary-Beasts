@@ -22,13 +22,10 @@
     <div class="info">
       <h1>Hot-lines</h1>
       <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias error
-        atque ut impedit sit nesciunt quaerat ipsam at. Excepturi, corrupti
-        quidem voluptate error id blanditiis repellat asperiores a optio
-        laboriosam. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Officiis consectetur, sed dignissimos expedita corporis ex ratione.
-        Velit ipsum pariatur quis porro culpa totam quod repudiandae. Vitae
-        nesciunt similique quas maxime!
+        Reporting crime is a good steppingstone to justice. Don’t be paralyzed by fear, 
+        report injustice and keep our future children, families and friends safe. It Starts 
+        with one phone call. CRIME-LINE connects you with call specialists that are specially 
+        trained professionals, who follow legal procedures ensuring the safest response to each case.
       </p>
       <span class="button" id="toWhistle"
         ><a href="#whistle">Call Now !</a></span
