@@ -21,7 +21,7 @@
 <?php
 
 $query = "SELECT topics.topic_id,topics.topic_subject,categories.cat_name,topic_date
-          FROM topics,categories 
+          FROM topics,categories
           WHERE topics.topic_cat = categories.cat_id ORDER BY topic_date DESC";
 $res = mysqli_query($conn,$query);
 
@@ -40,7 +40,7 @@ while($data = mysqli_fetch_assoc($res)){
   $since_start = $start_date->diff(new DateTime());
   $newTdate = ($since_start->y > 0 ? $since_start->y.' years ago' :
     ($since_start->m > 0 ? $since_start->m.'months ago':
-    ($since_start->d > 0 ? $since_start->d.'days ago'  :
+    ($since_start->d > 0 ? $since_start->d.'d ago'  :
     ($since_start->h > 0 ? $since_start->h.'h ago'     :
     ($since_start->i > 0 ? $since_start->i.'m ago'     :
     ($since_start->s > 0 ? $since_start->s.'s ago': '-' ))))))

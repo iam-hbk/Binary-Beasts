@@ -53,7 +53,8 @@ if (isset($_POST["submitEdit"])) {
         <div class="info posts">Number of posts: 73</div>
         <div class="info replies">Number of replies: 45</div>
         <div class="info votes">Number of votes: 85</div>
-        <div class="errors"><?php echo (strlen($error) > 0) ? $error : ""; ?></div>
+        <div id="deleteAcc">Delete account <i class="fas fa-trash"></i></div>
+        <?php if (strlen($error) > 0) {echo '<div class="errors">' . $error . '</div>';}?>
     </div>
     </form>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -75,9 +76,10 @@ if (isset($_POST["submitEdit"])) {
             setTimeout(() => {
                 $(".errors").toggle();
             }, 4000);
-
-
+            $("#deleteAcc").click(()=>{
+                
+            })
         });
-    </script>
+    </script
 </body>
 </html>

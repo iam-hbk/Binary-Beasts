@@ -75,7 +75,7 @@ $_SESSION["topic_subject"] = $_GET["topic_subject"];
         color: #111;
         cursor: pointer;
     }
-    div.topicBottom span:not(:first-of-type){
+    div.topicBottom span:not(:first-of-type),#upvote{
         background-color: rgb(11, 150, 15);
         color: #fff;
         border: none;
@@ -262,21 +262,13 @@ echo mysqli_error($conn);
                         $post_content
                     </div>
                     <div class="topicBottom">
-                        <span><button id='reply_$i' onclick='show_reply(this.id)'  class="reply">reply <i class="fas fa-reply"></i></button></span>
-                        <span class="upVote">43 <i class="fas fa-chevron-up"></i></span>
+                        
+                        <span id="upvote" class="upVote">43 <i class="fas fa-chevron-up"></i></span>
                         <span class="downVote">8 <i class="fas fa-chevron-down"></i></span>
                     </div>
                 </div>
-                <form class="reply-form" id="form_$i" method="POST" action="replyOfReply.php">
-                    <textarea placeholder="Type your reply here..." required name="reply-area" id="reply-area" cols="30" rows="10"></textarea>
-                    
                 EOF;
-                $sI = '<input type="submit" name="submit-reply" value="Post reply">
-                <span class="cancel-reply">Cancel</span></form>';
-                $sO = '<span id ="reply-disabled"><i class="fas fa-exclamation-triangle"></i>
-                <input type="submit" name="submit-reply" value="Sign In to reply" disabled ></span>
-                <span class="cancel-reply">Cancel</span></form>';
-                echo ($_SESSION["signed_in"])? $html.$sI:$html.$sO;
+                echo /* ($_SESSION["signed_in"])?  */$html;
             }
         }
 
