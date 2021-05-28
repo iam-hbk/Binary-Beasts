@@ -7,15 +7,11 @@
           <thead>
             <tr>
               <th>Topic</th>
-              <!-- name of the topic -->
+              
               <th>Category</th>
-              <!-- topic's category -->
-              <th>Users</th>
-              <!-- Number of users having this specific topic ID -->
-              <th>Replies</th>
-              <!-- NUmber of replies -->
+              
               <th>Last activity</th>
-              <!-- Last post or reply under this topic -->
+              
             </tr>
           </thead>
 <?php
@@ -49,15 +45,7 @@ while($data = mysqli_fetch_assoc($res)){
     $html = <<<EOF
     <td><a class="toTopicLink" href="topic.php?topic_id=$tId&topic_subject=$tsubject" >$tsubject</a></td>
     <td>$tcat</td>
-    <td id="tableDataUsers">
-      <i class="fa fa-user-circle" aria-hidden="true"></i
-      ><i class="fa fa-user-circle" aria-hidden="true"></i
-      ><i class="fa fa-user-circle" aria-hidden="true"></i>
-      <span id="plusNumbers">+87</span>
-    </td>
-    <!--3 avatars plus # of users -->
-    <td>112</td>
-    <!-- # of replies in this specific topic -->
+    
     <td>$newTdate</td>
   </tr>
   EOF;

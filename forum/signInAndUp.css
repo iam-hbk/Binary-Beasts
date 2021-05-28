@@ -26,7 +26,7 @@ body {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
 }
-.wrapper a {
+.wrapper > a{
   color: black;
 }
 .wrapper a:hover {
@@ -312,6 +312,7 @@ div#successfully{
   -o-border-radius: 10px;
 }
 #deleteAcc{
+  cursor: pointer;
   text-align: center;
   color: white;
   margin-top: 20px;
@@ -322,4 +323,22 @@ div#successfully{
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
+}
+#linkDelAcc{
+  text-decoration: none;
+  transition: .8s;
+  -webkit-transition: .8s;
+  -moz-transition: .8s;
+  -ms-transition: .8s;
+  -o-transition: .8s;
+}
+
+a#linkDelAcc:hover,a#linkDelAcc:hover > div{
+  background-color: #9e1030ff;
+  transition: .8s;
+  font-size: 1em;
+  -webkit-transition: .8s;
+  -moz-transition: .8s;
+  -ms-transition: .8s;
+  -o-transition: .8s;
 }

@@ -42,7 +42,66 @@ if (isset($_POST["submitEdit"])) {
 <body>
     <form action="editProfile.php" method="POST">
     <div class="wrapper editProfile">
-    <a href="/Binary-Beasts/forum"><i class="fas fa-arrow-left"></i></a>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        div form{
+            justify-content: space-around;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            width: 250px;
+            padding: 10px;
+            height: 30vh;
+            position: absolute;
+            top: 40vh;
+            right: 40vw;
+            border-radius: 10px;
+            background-color: white;
+            backdrop-filter: blur(5px);
+        }div form input[type="submit"]{
+            width: 100px;
+            cursor: pointer;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            background-color: #9e1030ff;
+
+        }
+        div form input,div form input:focus{
+            outline: none;
+            width: 230px;
+            border: none;
+            border-bottom: 2px solid black;
+            padding: 5px 10px;
+            margin: 10px;
+        }
+        a#linkDelAcc:hover{
+            color: #9e1030ff;
+            transform: none;
+        }
+        div#bg{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #22222266;
+        }
+        h3#delete{
+            width: 100%;
+            margin: 10px;
+            text-align: center;
+            font-family: poppins;
+            border-bottom: 2px solid   #9e1030ff;
+        }
+
+
+    </style>
+    <a id="redirect" href="/Binary-Beasts/forum"><i class="fas fa-arrow-left"></i></a>
         <h1 id="pp"><i class="fas fa-user-circle"></i></h1>
         <div class="username">
             <h2><?php echo $user_name ?></h2>
@@ -50,13 +109,27 @@ if (isset($_POST["submitEdit"])) {
             <i class="fas fa-edit"></i>
             <input id="saveButton" type="submit" name="submitEdit" value="Save">
         </div>
+        <div class="updatePassword">Change Password <i class="fas fa-key"></i></div>
         <div class="info posts">Number of posts: 73</div>
         <div class="info replies">Number of replies: 45</div>
         <div class="info votes">Number of votes: 85</div>
-        <div id="deleteAcc">Delete account <i class="fas fa-trash"></i></div>
+        <a id="linkDelAcc" href="#"><div id="deleteAcc">Delete account <i class="fas fa-trash"></i></div></a>
         <?php if (strlen($error) > 0) {echo '<div class="errors">' . $error . '</div>';}?>
     </div>
     </form>
+    <div id="bg">
+    <div id="changePasswordPopUp">
+        <form action="changePassword.php" method="post">
+            <h3 id="delete">Change Password</h3>
+            <input type="password" name="oldPassword" id="oldPassword">
+            <input type="password" name="NewPassword" id="NewPassword">
+            <input type="submit" value="Change">
+        </form>
+    </div>
+    </div>
+    
+  
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(()=>{
@@ -77,7 +150,26 @@ if (isset($_POST["submitEdit"])) {
                 $(".errors").toggle();
             }, 4000);
             $("#deleteAcc").click(()=>{
-                
+                var user_name = "<?php echo $_SESSION["user_name"] ?>";
+                if(confirm("Do you really want to delete your account forever ?")){
+                    
+                    
+                    $.post("delete.php",{'user_name':user_name},(data)=>{
+                        console.log(data);
+                        $(".wrapper").addClass("AccDeleted");
+                        $(".AccDeleted").html("You have been <em>LOGGED OUT</em> and your account has been <em>SUCCESSFULLY DELETED</em>.");
+                        $(".AccDeleted").css("text-align","center");
+                        $(".AccDeleted em").css({
+                            "font-style":"normal","color":"#9e1030ff","font-weight":"bold"
+                        });
+                        setTimeout(() => {
+                            $("#linkDelAcc").attr("href","/Binary-Beasts/forum");
+                            window.location.replace("http:index.php");
+                        }, 3000);
+                    });
+                }else{
+                    $("#linkDelAcc").attr("href","#");
+                }
             })
         });
     </script

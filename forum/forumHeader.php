@@ -17,8 +17,27 @@ session_start();
   <body>
     <header>
       <div class="leftpart">
-        <div class="logo_container">
-          <img src="logo.png" alt="crimeline_logo" srcset="" />
+      <style>
+        div.logo_container:hover{
+          transform: scale(2);
+          animation: animateLogo 1.5s infinite ease-in-out;
+          transition: 1s;
+        }
+        @keyframes animateLogo {
+          0%,100%{
+            transform: rotate(0deg);
+            transform-origin: 20px;
+          }
+          50%{
+            transform: rotate(180deg);
+            transition: 1s;
+          }
+        }
+      </style>
+        <div onclick='window.location.replace("http:/Binary-Beasts/index.php")'
+          style="cursor: pointer;"
+          class="logo_container">
+          <img id="logo" src="logo.png" alt="crimeline_logo" srcset="" />
         </div>
         <h2>Community</h2>
         <h3><a href="/Binary-Beasts"><i class="fas fa-arrow-left"></i></a></h3>
@@ -45,18 +64,35 @@ if ($_SESSION["signed_in"]) {
 
         <li>Categories<i id="categoriesMenuIcon" class="fa fa-bars" aria-hidden="true"></i></li>
       </ul>
+      <script>
+      function got_to_cat(data){
+
+        window.location.replace("http:categories.php?cat_name="+data);
+      }
+    </script>
       <div class="categoriesMenu">
         <span id="categoriesMenuQuit">X</span>
         <!-- For $i=0 ; $i < numberOfCategories ; $i++ echo Category $i -->
         <?php 
-          $query = "SELECT cat_name FROM categories ";
+          $query = "SELECT cat_name,cat_id FROM categories ";
           $res = mysqli_query($conn,$query);
           while($data = mysqli_fetch_assoc($res)){
-            echo "<div class='categoriesMenuItems'>".$data["cat_name"]."</div>";
+            $innerHTML = $data["cat_name"];
+            $id = $data["cat_id"];
+            $to = <<<EOF
+              <div
+                id = '$id'
+                onclick='window.location.replace("http:categories.php?cat_name="+this.innerHTML+"&cat_id="+this.id)'
+                class='categoriesMenuItems'>
+                $innerHTML
+                </div>
+            EOF;
+            echo $to;
           }
         ?>
       </div>
     </header>
+    
     <section style = "display:none" class="phpVariablesForJs"><span id="session_signed_in"><?php echo ($_SESSION["signed_in"])? "true":"" ?></span></section>
     <?php
     if($_SESSION["isTopicCreated"]){
@@ -75,9 +111,6 @@ if ($_SESSION["signed_in"]) {
           <div class="title_popular">
             <a href="popular.php">POPULAR</a>
           </div><!-- of the category display or links to specific pages where -->
-          <div class="title_categories">
-            <a href="categories.php">CATEGORIES</a>
-          </div><!--  appropriate Sql code is ran to retrieve data -->
         </div>
         <div class="new_topic_button">
           <i class="fas fa-plus"></i> NEW TOPIC
@@ -116,7 +149,7 @@ while ($data = mysqli_fetch_assoc($things)) {
           <textarea required placeholder="Type your first post on this topic..." name="topicContent" id="#topicContent" cols="30" rows="10"></textarea>
           <div class="createTopicSubmit" style="position: relative;">
           
-            <input disabled name="submitCreateTopic" type="submit" value=" + Create Topic">
+            <input disabled name="submitCreateTopic" type="submit" value=" Proceed">
             <span class="ifDisabled">Select a category to enable this button</span>
             
           </div>
