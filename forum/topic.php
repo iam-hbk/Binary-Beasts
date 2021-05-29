@@ -221,7 +221,7 @@ echo mysqli_error($conn);
         </div>
         <div class="topicBottom">
             <span><button id='reply_0' onclick='show_reply(this.id)'  class="reply">reply <i class="fas fa-reply"></i></button></span>
-            <span class="upVote">43 <i class="fas fa-chevron-up"></i></span>
+            <span class="upVote">9 <i class="fas fa-chevron-up"></i></span>
             <span class="downVote">8 <i class="fas fa-chevron-down"></i></span>
         </div>
     </div>

@@ -48,16 +48,20 @@ if (isset($_POST["submitEdit"])) {
             justify-content: center;
             position: relative;
         }
+        div.username{
+            border-bottom: .5px solid #9e1030ff;
+            margin-bottom:20px;
+        }
         div form{
             justify-content: space-around;
             align-items: center;
             display: flex;
             flex-direction: column;
-            width: 250px;
+            width: 350px;
             padding: 10px;
-            height: 30vh;
+            height: auto;
             position: absolute;
-            top: 40vh;
+            top: 30vh;
             right: 40vw;
             border-radius: 10px;
             background-color: white;
@@ -73,9 +77,8 @@ if (isset($_POST["submitEdit"])) {
         }
         div form input,div form input:focus{
             outline: none;
-            width: 230px;
             border: none;
-            border-bottom: 2px solid black;
+            border-bottom: 1px solid black;
             padding: 5px 10px;
             margin: 10px;
         }
@@ -84,19 +87,22 @@ if (isset($_POST["submitEdit"])) {
             transform: none;
         }
         div#bg{
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #22222266;
+            background-color: #222222c6;
         }
         h3#delete{
+            font-weight: 300;
             width: 100%;
             margin: 10px;
             text-align: center;
             font-family: poppins;
-            border-bottom: 2px solid   #9e1030ff;
+            margin:15px 0 25px 0;
+            padding-bottom: 10px;
+            border-bottom: .5px solid   #9e1030ff;
         }
 
 
@@ -109,7 +115,26 @@ if (isset($_POST["submitEdit"])) {
             <i class="fas fa-edit"></i>
             <input id="saveButton" type="submit" name="submitEdit" value="Save">
         </div>
-        <div class="updatePassword">Change Password <i class="fas fa-key"></i></div>
+        <style>
+            .updatePassword{
+                display: grid;
+                place-items: center;
+                color: #9e1030ff;
+            }
+            .cpb{
+                opacity: 0;
+                transition: .5s;
+            }
+            i.fa-key{
+                cursor: pointer;
+                font-size: 1.5em;
+            }
+            i.fa-key:hover ~ .cpb{
+                display: inline-block;
+                opacity: 1;
+            }
+        </style>
+        <div class="updatePassword"><i class="fas fa-key"></i><span class="cpb">Change Password</span></div>
         <div class="info posts">Number of posts: 73</div>
         <div class="info replies">Number of replies: 45</div>
         <div class="info votes">Number of votes: 85</div>
@@ -119,12 +144,56 @@ if (isset($_POST["submitEdit"])) {
     </form>
     <div id="bg">
     <div id="changePasswordPopUp">
-        <form action="changePassword.php" method="post">
+        <form>
             <h3 id="delete">Change Password</h3>
-            <input type="password" name="oldPassword" id="oldPassword">
-            <input type="password" name="NewPassword" id="NewPassword">
-            <input type="submit" value="Change">
+            <div class="contains oldP">
+                <input type="password" required placeholder="Old Password..." name="oldPassword" id="oldPassword">
+                <i id="oldPasswordShow" class="far fa-eye"></i>
+                <i id="oldPasswordHide" class="far fa-eye-slash"></i>
+            </div>
+            <div class="contains newP">
+                <input type="password" required placeholder="New Password..." name="newPassword" id="newPassword">
+                <i id="newPasswordShow" class="far fa-eye"></i>
+                <i id="newPasswordHide" class="far fa-eye-slash"></i>
+            </div>
+            <div class="contains ConfP">
+                <input type="password" required placeholder="Confirm Password..." name="confirmPassword" id="confirmPasswordCP">
+                <i id="confirmShow" class="far fa-eye"></i>
+                <i id="confirmHide" class="far fa-eye-slash"></i>
+            </div>
+            <div class="buttonsCP"><span id="cancelCP" class="cancel">Cancel</span><span id="ChangeCP" class="cancel">Change</span></div>
+            <div class="errorOnchangePassword">an error, the two passwords do not match</div>
+            <style>
+                div.contains{
+                    display: flex;
+                    position: relative;
+                    align-items: center;
+                }
+                span.cancel{
+                    border: 2px solid #9e1030ff;
+                    padding: 4px 10px;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    margin: 15px;
+                }
+                span.cancel#ChangeCP{
+                    background-color: #9e1030ff;
+                    color: white;
+                }
+                div.errorOnchangePassword{
+                    margin-top: 10px;
+                    background-color: white;
+                    width: 100%;
+                    text-align: center;
+                    padding: 10px;
+                    color: #9e1030ff;
+                }
+            </style>
+            <script>
+
+            </script>
         </form>
+        
     </div>
     </div>
     
@@ -133,6 +202,7 @@ if (isset($_POST["submitEdit"])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(()=>{
+            $("#bg").css("display","none");
             $(".fa-edit").click(()=>{
                 $(".username h2").toggle();
                 $(".username #editName").css("display","inline-block").focus();
@@ -152,9 +222,8 @@ if (isset($_POST["submitEdit"])) {
             $("#deleteAcc").click(()=>{
                 var user_name = "<?php echo $_SESSION["user_name"] ?>";
                 if(confirm("Do you really want to delete your account forever ?")){
-                    
-                    
                     $.post("delete.php",{'user_name':user_name},(data)=>{
+                    
                         console.log(data);
                         $(".wrapper").addClass("AccDeleted");
                         $(".AccDeleted").html("You have been <em>LOGGED OUT</em> and your account has been <em>SUCCESSFULLY DELETED</em>.");
@@ -166,11 +235,53 @@ if (isset($_POST["submitEdit"])) {
                             $("#linkDelAcc").attr("href","/Binary-Beasts/forum");
                             window.location.replace("http:index.php");
                         }, 3000);
+
                     });
                 }else{
                     $("#linkDelAcc").attr("href","#");
                 }
             })
+            /* Old password */
+            $("#oldPasswordShow").click(() => {
+                $("#oldPasswordHide").toggle();
+                $("#oldPasswordShow").toggle();
+                $("#oldPassword").prop({ type: "text" });
+            });
+            $("#oldPasswordHide").click(() => {
+                $("#oldPasswordHide").toggle();
+                $("#oldPasswordShow").toggle();
+                $("#oldPassword").prop({ type: "password" });
+            });
+            /* New password*/
+            $("#newPasswordShow").click(() => {
+                $("#newPasswordShow").toggle();
+                $("#newPasswordHide").toggle();
+                $("#newPassword").prop({ type: "text" });
+            });
+            $("#newPasswordHide").click(() => {
+                $("#newPasswordHide").toggle();
+                $("#newPasswordShow").toggle();
+                $("#newPassword").prop({ type: "password" });
+            });
+            /* 3 confirm password */
+            $("#confirmShow").click(() => {
+                $("#confirmShow").toggle();
+                $("#confirmHide").toggle();
+                $("#confirmPasswordCP").prop({ type: "text" });
+            });
+            $("#confirmHide").click(() => {
+                $("#confirmHide").toggle();
+                $("#confirmShow").toggle();
+                $("#confirmPasswordCP").prop({ type: "password" });
+            });
+
+            $("#cancelCP").click(()=>{
+                $("#bg").fadeToggle(300);
+            })
+            $("i.fa-key").click(()=>{
+                $("#bg").fadeToggle(300);
+            })
+
         });
     </script
 </body>

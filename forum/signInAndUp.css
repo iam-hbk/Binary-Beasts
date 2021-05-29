@@ -297,9 +297,6 @@ div.errors {
 .form-element .password-policies > div.active {
   color:rgb(11, 150, 15);
 }
-.goodPassword.on ~ div.active  {
-  color: blue;
-}
 div#successfully{
   color:rgb(11, 150, 15);
   padding: 10px 20px;

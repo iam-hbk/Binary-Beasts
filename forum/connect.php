@@ -13,4 +13,5 @@ if(!mysqli_select_db($conn,$database))
 {
     exit('Error: could not select the database');
 }
+// print_r($conn);
 ?>

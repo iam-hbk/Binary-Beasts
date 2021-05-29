@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 
     $topic_name = mysqli_real_escape_string($conn, $_POST["topicName"]);
     $topic_cat = mysqli_real_escape_string($conn, $_POST["createCategoryCategory"]);
-    $topic_content = mysqli_real_escape_string($conn, $_POST["topicContent"]);
+    $topic_content = htmlentities(htmlspecialchars($_POST["topicContent"]));
 // $user_id = $_SESSION["user_id"];
 
 // get topic_cat Id

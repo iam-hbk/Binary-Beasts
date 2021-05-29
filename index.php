@@ -34,7 +34,7 @@
   </section>
   <section class="section2">
     <div class="info">
-      <h1>Forum</h1>
+      <h1>Community</h1>
       <p>
         Reply, Post, and Scroll through some of the information to see if you relate
         with some of the traumas most south Africans go through on daily basis.
@@ -45,7 +45,7 @@
         believe Standing together is better than standing alone, UMUNTU NGUMUNTU NGA BANTU
         (MOTHO KE MOTHO KA BATHO)
       </p>
-      <span class="button" id="toForum"><a href="  forum/">see Forum</a></span>
+      <span class="button" id="toForum"><a href="  forum/">see Community</a></span>
     </div>
     <div class="img">
       <img src="images/forum.jpg" />
