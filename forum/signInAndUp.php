@@ -95,9 +95,32 @@ if (isset($_POST["signUpSubmit"])) {
                 //echo mysql_error(); //debugging purposes, uncomment when needed
             } else {
                 // echo 'Successfully registered. You can now Sign In and start posting! :-)';
-                
-                $_SESSION["isTopicCreated"] = true;
-                header("Location: http:/Binary-Beasts/forum/signInAndUp.php");
+                $sql = "SELECT
+                        user_id,
+                        user_name,
+                        user_level,
+                        user_email
+                    FROM
+                        users
+                    WHERE
+                        user_email = '$userEmail'
+                    AND
+                        user_pass = '$password'";
+
+                $result = mysqli_query($conn, $sql);
+                $_SESSION['signed_in'] = true;
+
+                //we also put the user_id and user_name values in the $_SESSION, so we can use it at various pages
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $_SESSION['user_id'] = $row['user_id'];
+                    $_SESSION['user_name'] = $row['user_name'];
+                    $_SESSION['user_level'] = $row['user_level'];
+                    $_SESSION['user_email'] = $row['user_email'];
+                }
+
+                header("Location: http:/Binary-Beasts/forum");
+                // $_SESSION["isTopicCreated"] = true;
+                // header("Location: http:/Binary-Beasts/forum/signInAndUp.php");
                 exit();
             }
         }

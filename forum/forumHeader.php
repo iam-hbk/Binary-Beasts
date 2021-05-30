@@ -106,11 +106,11 @@ if ($_SESSION["signed_in"]) {
       <section class="titles_and_buttons">
         <div class="titles">
           <div class="title_latest">
-            <a href="latest.php">LATEST</a>
+            <a href="latest.php">LATEST TOPICS</a>
           </div> <!-- This are links or Buttons that trigger the behaviour-->
-          <div class="title_popular">
+          <!-- <div class="title_popular">
             <a href="popular.php">POPULAR</a>
-          </div><!-- of the category display or links to specific pages where -->
+          </div> --><!-- of the category display or links to specific pages where -->
         </div>
         <div class="new_topic_button">
           <i class="fas fa-plus"></i> NEW TOPIC

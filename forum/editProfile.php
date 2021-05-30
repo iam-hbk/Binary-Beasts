@@ -35,6 +35,7 @@ if (isset($_POST["submitEdit"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/e005c8a2fd.js"></script>
     <link rel="stylesheet" href="signInAndUp.css">
     <title>Document</title>
@@ -144,7 +145,7 @@ if (isset($_POST["submitEdit"])) {
     </form>
     <div id="bg">
     <div id="changePasswordPopUp">
-        <form>
+        <form id="formCP">
             <h3 id="delete">Change Password</h3>
             <div class="contains oldP">
                 <input type="password" required placeholder="Old Password..." name="oldPassword" id="oldPassword">
@@ -162,7 +163,7 @@ if (isset($_POST["submitEdit"])) {
                 <i id="confirmHide" class="far fa-eye-slash"></i>
             </div>
             <div class="buttonsCP"><span id="cancelCP" class="cancel">Cancel</span><span id="ChangeCP" class="cancel">Change</span></div>
-            <div class="errorOnchangePassword">an error, the two passwords do not match</div>
+            <div class="errorOnchangePassword" id="errorCP" ></div>
             <style>
                 div.contains{
                     display: flex;
@@ -190,6 +191,67 @@ if (isset($_POST["submitEdit"])) {
                 }
             </style>
             <script>
+            var pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$/;
+                $(document).ready(()=>{
+                    
+
+                    $("#ChangeCP").click(()=>{
+                        var user = "<?php echo $_SESSION["user_name"] ?>";
+                        var oldP = $("#oldPassword");
+                        var newP = $("#newPassword");
+                        var confP = $("#confirmPasswordCP");
+                        var error = $("#errorCP");
+                        error.html(" ");
+                        var pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$/;
+                        
+
+                        if((oldP.val().length == 0) || (newP.val().length == 0) || confP.val().length == 0){
+                            error.html("Please fill in all the fields");
+                        }
+                        else if(!pattern.test(newP.val())){
+                            error.html(`Your new password:
+                                            <li>Must be at least 8 characters</li>
+                                            <li>At least 1 number, 1 lowercase, 1 uppercase letter</li>
+                                            <li>At least 1 special character from @#$%&</li>
+                                        `);
+                        }else if(oldP.val() == newP.val()){
+                            error.html("Your new Password is same as the old one");
+                        }
+                        else if (newP.val() != confP.val()){
+                            error.html("The 2 Passwords don't match");
+                        }
+                        else{
+                            $.post("delete.php",
+                            {
+                                'name':user,
+                                'oldP':oldP.val(),
+                                'newP':newP.val()
+                            },
+                            (data)=>{
+                                console.log(data);
+
+                                if(data!="done"){
+                                    error.html(data);
+
+                                }else if(data == 'No record'){
+                                    error.html("The user's entered password is incorrect");
+                                    oldP.focus();
+                                }else if(data == "done"){
+                                    error.html("<span style ='color:green'>Password Changed Successfully</span>");
+                                    setTimeout(() => {
+                                        error.html(" ");
+                                        $("#bg").fadeToggle(300);
+                                        document.getElementById("formCP").reset();
+                                    }, 1500);
+
+
+                                }
+                            })
+                        }
+
+
+                    })
+                })
 
             </script>
         </form>
@@ -199,7 +261,7 @@ if (isset($_POST["submitEdit"])) {
     
   
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
     <script>
         $(document).ready(()=>{
             $("#bg").css("display","none");
@@ -223,7 +285,7 @@ if (isset($_POST["submitEdit"])) {
                 var user_name = "<?php echo $_SESSION["user_name"] ?>";
                 if(confirm("Do you really want to delete your account forever ?")){
                     $.post("delete.php",{'user_name':user_name},(data)=>{
-                    
+
                         console.log(data);
                         $(".wrapper").addClass("AccDeleted");
                         $(".AccDeleted").html("You have been <em>LOGGED OUT</em> and your account has been <em>SUCCESSFULLY DELETED</em>.");
@@ -277,6 +339,8 @@ if (isset($_POST["submitEdit"])) {
 
             $("#cancelCP").click(()=>{
                 $("#bg").fadeToggle(300);
+                document.getElementById("formCP").reset();
+                $("#errorCP").html(" ");
             })
             $("i.fa-key").click(()=>{
                 $("#bg").fadeToggle(300);
