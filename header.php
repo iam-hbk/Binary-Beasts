@@ -41,10 +41,10 @@
         <!-- <span class="tab"
           ><a class="anchorHeader" id="stats" href="#stats">Statistics</a></span
         > -->
-        <span class="tab"
+        <span class="tab" style="padding-left: 10px;"
           ><a class="anchorHeader" id="about" href="#footer">About</a></span
         >
-        <input
+        <!-- <input
           type="search"
           name="search"
           id="search"
@@ -53,7 +53,7 @@
         />
         <label for="search"
           ><i class="fa fa-search" aria-hidden="true"></i
-        ></label>
+        ></label> -->
       </div>
       
           </header>

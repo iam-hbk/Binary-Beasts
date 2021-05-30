@@ -3,24 +3,8 @@
 
   <section class="section1">
     <div class="info">
-      <h1 id="crimeline">crime-line</h1>
-      <!-- <p style="
-          background-image: url('images/use-your-voice.gif');
-          
-          background-repeat: no-repeat;
-          background-position-x: center;
-          width: 50%;
-          height: 100%;
-          background-size: contain;
-          border-radius: 100%;
-          
-          "
-        > -->
-        <!-- We empower people to speak up and make a difference We want to assure
-        you that you are not alone and that there are people who want to help,
-        just let us know what you need and we will link you to trained
-        professionals who are willing to listen and lend you a helping hand. -->
-      </p>
+      <h1 class="crimeline" id="crimeline">crime-line</h1>
+      
       <!-- <img src="images/use-your-voice.gif" alt="use your voice"> -->
     </div>
     <div class="img">

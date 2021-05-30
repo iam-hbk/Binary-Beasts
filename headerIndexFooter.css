@@ -15,6 +15,26 @@ body {
   box-sizing: border-box;
   margin: 0;
 }
+h1#crimeline{
+	font-size: 5em;
+  white-space: nowrap;
+	animation: tracking-in-contract .8s cubic-bezier(0.215, 0.610, 0.355, 1.000) backwards;
+	-webkit-animation: tracking-in-contract .8s cubic-bezier(0.215, 0.610, 0.355, 1.000) backwards;
+}
+
+ @keyframes tracking-in-contract {
+  0% {
+    letter-spacing: 5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    letter-spacing: normal;
+    opacity: 1;
+  }
+}
 
 
 /* STYLE FOR HEADER */

@@ -288,13 +288,14 @@ if (isset($_POST["submitEdit"])) {
 
                         console.log(data);
                         $(".wrapper").addClass("AccDeleted");
-                        $(".AccDeleted").html("You have been <em>LOGGED OUT</em> and your account has been <em>SUCCESSFULLY DELETED</em>.");
+                        $(".AccDeleted").html("<?php session_destroy() ?>You have been <em>LOGGED OUT</em> and your account has been <em>SUCCESSFULLY DELETED</em>.");
                         $(".AccDeleted").css("text-align","center");
                         $(".AccDeleted em").css({
                             "font-style":"normal","color":"#9e1030ff","font-weight":"bold"
                         });
                         setTimeout(() => {
-                            $("#linkDelAcc").attr("href","/Binary-Beasts/forum");
+                            $("#linkDelAcc").
+                            attr("href","/Binary-Beasts/forum");
                             window.location.replace("http:index.php");
                         }, 3000);
 

@@ -33,7 +33,7 @@
           <a target="_blank" href="facebookPage"
             ><i class="fab fa-facebook-f"></i
           ></a>
-          <a target="_blank" href="twitterPage"
+          <a target="_blank" href="https://twitter.com/BCrimeline"
             ><i class="fab fa-twitter"></i
           ></a>
         </div>

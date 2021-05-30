@@ -44,7 +44,7 @@ if (isset($_POST["signInSubmit"])) {
                 $_SESSION['user_email'] = $row['user_email'];
             }
 
-            header("Location: http:/Binary-Beasts/forum");
+            header("Location: http:/Binary-Beasts/forum/");
             exit();
             // echo 'Welcome, ' . $_SESSION['user_name'] . '. <a href="index.php">Proceed to the forum overview</a>.';
         }
@@ -118,7 +118,7 @@ if (isset($_POST["signUpSubmit"])) {
                     $_SESSION['user_email'] = $row['user_email'];
                 }
 
-                header("Location: http:/Binary-Beasts/forum");
+                header("Location: http:/Binary-Beasts/forum/forgotPswd.php?user_id=".$_SESSION['user_id']);
                 // $_SESSION["isTopicCreated"] = true;
                 // header("Location: http:/Binary-Beasts/forum/signInAndUp.php");
                 exit();
