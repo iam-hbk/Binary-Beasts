@@ -7,7 +7,8 @@
 
     </div>
     <div class="img">
-      <img src="images/logo.png" alt="" />
+      <img
+      src="images/logo.png" alt="" />
     </div>
   </section>
   <section class="section2">

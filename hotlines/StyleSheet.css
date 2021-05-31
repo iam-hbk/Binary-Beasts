@@ -11,7 +11,7 @@
   background-repeat: no-repeat;
   background-size: 100%;
   background-size: cover;
-  position:fixed;
+  position:absolute;
   top:11%;
   width: 100%;
   overflow:hidden;
@@ -95,7 +95,7 @@ q,
 /* hotlines sidebar*/
 .sidebar {
   height:60%;
-  width: 25%;
+  width: 0%;
   position:fixed;
   position:top fixed;
   float: left;
@@ -128,11 +128,11 @@ q,
 /*-----------------------------------------------------------------------------------------------------------*/
 .categories {
   border: 2px solid transparent;
-  width: 75%;
-  margin-left: 25%;
+  width: 100%;
+  padding: 20px;
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   background:white;
   
   flex-wrap: wrap;

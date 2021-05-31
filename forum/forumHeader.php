@@ -167,7 +167,7 @@ if ($_SESSION["signed_in"]) {
 <!-- Does the title sound interesting if you read it out loud? Is it a good summary?
 Who would be interested in this? Why does it matter? What kind of responses do you want?
 Include commonly used words in your topic so others can find it. To group your topic with related topics, select a category. -->
-For more, see our <a href="Guideline.html" target="_blank">community guidelines</a>.
+For more, see our <a href="../guidelines.php">community guidelines</a>.
 </span></p>
         <form action="create_topic.php" method="post">
           <fieldset>

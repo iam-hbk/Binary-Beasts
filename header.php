@@ -14,13 +14,17 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <link rel="stylesheet" href="headerIndexFooter.css" />
+    <link rel="stylesheet" href="getHelp/gethelp.css">
     <link rel="stylesheet" href="StyleSheet.css">
     <title>Document</title>
   </head>
 
   <body>    <header>
       <div class="logo">
-        <img src="images/logo.png" alt="Crimeline logo" srcset="" />
+      <img
+      onclick="window.location.replace('index.php')"
+      style="cursor:pointer"
+      src="images/logo.png" alt="Crimeline logo" srcset="" />
       </div>
       <div class="tabs">
         <span class="tab"
@@ -45,16 +49,6 @@
         <span class="tab" style="padding-left: 10px;"
           ><a class="anchorHeader" id="about" href="#footer">About</a></span
         >
-        <!-- <input
-          type="search"
-          name="search"
-          id="search"
-          autocomplete="off"
-          placeholder="search..."
-        />
-        <label for="search"
-          ><i class="fa fa-search" aria-hidden="true"></i
-        ></label> -->
       </div>
       
           </header>

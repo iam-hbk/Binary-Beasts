@@ -8,7 +8,8 @@
   <title>Hotlines</title>
   <link rel="stylesheet" href="StyleSheet.css">
   <link rel="stylesheet" href="headerIndexFooter.css">
-  <?php echo file_get_contents("header.php"); ?>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <?php echo file_get_contents("../header.php"); ?>
 </head>
 
 <body>
@@ -82,44 +83,57 @@
   <!--Sidebar on why its iportant to report crime-->
   <div class="sidebar">
 
+
     <table id="Report">
-      <tr>
-        <th>Why Report Crime:</th>
+      <tr id="baby">
+        <th><i class="fas fa-bars"></i> Why Report Crime</th>
       </tr>
-      <tr>
+      
+      <tr class="slidDown">
         <td>It helps with establishing crime trends</td>
       </tr>
-      <tr>
+      <tr class="slidDown">
         <td>It helps in understanding motive and modus</td>
       </tr>
-      <tr>
+      <tr class="slidDown">
         <td>It ensures suspects can be sent to jail once they have been finally apprehended</td>
       </tr>
-      <tr>
+      <tr class="slidDown">
         <td>It helps the community to better understand and respond to safety issues.</td>
       </tr>
-      <tr>
+      <tr class="slidDown">
         <td>It can lead to more arrests.</td>
       </tr>
-      <tr>
+      <tr class="slidDown">
         <th>EMERGENCY LINE:</th>
       </tr>
-      <tr>
+      <tr class="slidDown">
         <td><a href="tell:10177">Emergency - Ambulance (10177)</a></td>
       </tr>
-      <tr>
+      <tr class="slidDown">
         <td><a href="tell:112">Emergency - Cell phone (112)</a></td>
       </tr>
-      <tr>
+      <tr class="slidDown">
         <td><a href="tell:10111">Emergency - National (10111)</a></td>
       </tr>
-      <tr>
+      <tr class="slidDown">
         <td><a href="tell:10111">Fire Brigade - National (998)/(999)</a></td>
       </tr>
-      <tr>
+      <tr class="slidDown">
         <td><a href="tell:10111">ER24 - National (084124)</a></td>
       </tr>
+     
+      
     </table>
+    <script>
+        $("#slideDown").hide();
+        $(document).ready(()=>{
+            
+          $("#baby").click(()=>{
+            $("#slideDown").slideToggle();
+          })
+        })
+      </script>
 
   </div>
 
@@ -233,6 +247,6 @@
   <div style="padding:6px;"></div>
  
 </body>
-<?php echo file_get_contents("footer.php"); ?>
+<?php echo file_get_contents("../footer.php"); ?>
 
 </html>
