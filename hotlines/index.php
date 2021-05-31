@@ -15,7 +15,34 @@
 <body>
 
   <span class="heartbeat" id="float"><i class="fas fa-exclamation-circle"></i></span>
-  <div class="infos"></div>
+  <div class="infos">
+    <span id="quit"><i class="fas fa-times-circle"></i></span>
+    <h2> Why Report Crime</h2>
+    <ul>
+      <li>It helps with establishing crime trends</li>
+      <li>It helps in understanding motive and modus</li>
+      <li>It ensures suspects can be sent to jail once they have been finally apprehended</li>
+      <li>It helps the community to better understand and respond to safety issues.</li>
+      <li>It can lead to more arrests.</li>
+    </ul>
+    <h3>EMERGENCY LINES:</h3>
+    <ul>
+      <li><a href="tel:10177">Emergency - Ambulance (10177)</a></li>
+      <li><a href="tel:112">Emergency - Cell phone (112)</a></li>
+      <li><a href="tel:10111">Emergency - National (10111)</a></li>
+      <li><a href="tel:10111">Fire Brigade - National (998)/(999)</a></li>
+      <li><a href="tel:10111">ER24 - National (084124)</a></li>
+    </ul>
+  </div>
+  <script>
+    $(".infos").hide();
+    $("#float").click(()=>{
+      $(".infos").slideToggle();
+    })
+    $("#quit").click(()=>{
+      $(".infos").slideToggle();
+    })
+  </script>
   
   <!--Slideshow Container-->
   <div class="slideshow">
@@ -79,57 +106,10 @@
     <span class="dot" onclick="currentSlide(11)"></span>
     <span class="dot" onclick="currentSlide(12)"></span>
   </div>
+  
 
   <!--Javascript -->
   <script src="hotlines.js"> </script>
-
-  <!--Sidebar on why its iportant to report crime-->
-  <div class="sidebar">
-
-
-    <table id="Report">
-      <tr id="baby">
-        <th><i class="fas fa-bars"></i> Why Report Crime</th>
-      </tr>
-      
-      <tr class="slidDown">
-        <td>It helps with establishing crime trends</td>
-      </tr>
-      <tr class="slidDown">
-        <td>It helps in understanding motive and modus</td>
-      </tr>
-      <tr class="slidDown">
-        <td>It ensures suspects can be sent to jail once they have been finally apprehended</td>
-      </tr>
-      <tr class="slidDown">
-        <td>It helps the community to better understand and respond to safety issues.</td>
-      </tr>
-      <tr class="slidDown">
-        <td>It can lead to more arrests.</td>
-      </tr>
-      <tr class="slidDown">
-        <th>EMERGENCY LINE:</th>
-      </tr>
-      <tr class="slidDown">
-        <td><a href="tell:10177">Emergency - Ambulance (10177)</a></td>
-      </tr>
-      <tr class="slidDown">
-        <td><a href="tell:112">Emergency - Cell phone (112)</a></td>
-      </tr>
-      <tr class="slidDown">
-        <td><a href="tell:10111">Emergency - National (10111)</a></td>
-      </tr>
-      <tr class="slidDown">
-        <td><a href="tell:10111">Fire Brigade - National (998)/(999)</a></td>
-      </tr>
-      <tr class="slidDown">
-        <td><a href="tell:10111">ER24 - National (084124)</a></td>
-      </tr>
-     
-      
-    </table>
-
-  </div>
 
 
   <!--Main container-->
