@@ -8,7 +8,7 @@
   <title>Hotlines</title>
   <link rel="stylesheet" href="StyleSheet.css">
   <link rel="stylesheet" href="headerIndexFooter.css">
-  <?php include("header.php"); ?>
+  <?php echo file_get_contents("header.php"); ?>
 </head>
 
 <body>
@@ -232,6 +232,7 @@
   <div class="clearfix"></div>
   <div style="padding:6px;"></div>
  
+</body>
+<?php echo file_get_contents("footer.php"); ?>
 
-<?php include("footer.php"); ?>
-
+</html>
