@@ -41,6 +41,7 @@ if (isset($_POST["submitEdit"])) {
     <title>Document</title>
 </head>
 <body>
+    <span style="display: none;" class="phpData"><?php if(isset($_GET["temp"])){$tempP = $_GET["temp"] ;}?></span>
     <form action="editProfile.php" method="POST">
     <div class="wrapper editProfile">
     <style>
@@ -148,7 +149,7 @@ if (isset($_POST["submitEdit"])) {
         <form id="formCP">
             <h3 id="delete">Change Password</h3>
             <div class="contains oldP">
-                <input type="password" required placeholder="Old Password..." name="oldPassword" id="oldPassword">
+                <input type="password" required value="<?php echo $tempP; ?>" placeholder="Old password..." name="oldPassword" id="oldPassword">
                 <i id="oldPasswordShow" class="far fa-eye"></i>
                 <i id="oldPasswordHide" class="far fa-eye-slash"></i>
             </div>

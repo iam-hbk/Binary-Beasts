@@ -107,7 +107,7 @@ if (isset($_POST["signUpSubmit"])) {
                     AND
                         user_pass = '$password'";
 
-                $result = mysqli_query($conn, $sql);
+                $result = mysqli_query($conn, $sql) or die("SIGN IN :".mysqli_error($conn));
                 $_SESSION['signed_in'] = true;
 
                 //we also put the user_id and user_name values in the $_SESSION, so we can use it at various pages
@@ -148,7 +148,7 @@ $warningIconReg = (empty($name_error)) ? "" : "<i class='fas fa-exclamation-tria
     <title>Sign In | Sign Up</title>
 </head>
 <body>
-    
+    <span style="display:none;" id="phpVar"></span>
     <?php
     // echo '<div class="isTopicCreated" id="successfully">
     //         <i class="fas fa-check-circle"></i> 
@@ -188,7 +188,15 @@ $warningIconReg = (empty($name_error)) ? "" : "<i class='fas fa-exclamation-tria
                         <i id="showPassword" class="far fa-eye"></i>
                         <i id="hidePassword" class="far fa-eye-slash"></i>
                     </div>
-                    <div class="pass-link"><a onclick='window.location.replace("http:/Binary-Beasts/forum/forgotPswd.php?forgotPswd=true")' href="#">Forgot password?</a></div>
+                    <div class="pass-link"><a 
+                    onclick='
+                        // document.getElementById("phpVar").innerHTML = "<?php $_SESSION["forgotPswd"]=true ?>";
+                        
+                        setTimeout(()=>{
+                            window.location.replace("http:/Binary-Beasts/forum/forgotPswd.php?forgotPswd=true");
+                        },2000)
+                        '
+                    href="#">Forgot password?</a></div>
                     <div class="field">
                         <input type="submit" name="signInSubmit" value="Sign In">
                     </div>

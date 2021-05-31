@@ -109,6 +109,16 @@
         }
         div.info#done{
             border:2px solid #00ff20f1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+        span#ok{
+            color:white;
+            background-color: #9e1030ff;
+            padding: 5px 10px;
+            border-radius: 10px;
         }
     </style>
 </body>
@@ -117,55 +127,89 @@
 include "connect.php";
 session_start();
 
-if(isset($_GET["forgotPswd"])){
-    $_SESSION["forgotPswd"] = true;
+
+if (isset($_GET["forgotPswd"])){
+    $_SESSION["forgotPswd"] = $_GET["forgotPswd"];
 }
-$fp = ($_SESSION["forgotPswd"])? $_SESSION["forgotPswd"]:false;
 
-if (($fp == true) && isset($_POST["submit"])){
-    unset($_SESSION["forgotPswd"]);
 
+$temp = sha1("Temp@2021");
+
+if (($_POST["email"]) && isset($_POST["submit"])){
+    // unset($_SESSION["forgotPswd"]);
     $question = $_POST["question"];
     $answer = $_POST["answer"];
     $user_email = $_POST["email"];
-    echo $question.$answer.$user_email;
 
     $query="SELECT forgot_question,forgot_answer,user_pass
             FROM users
             WHERE user_email = '$user_email' ;";
+    
     $res = mysqli_query($conn,$query) or die("ERROR:".mysqli_error($conn));
-
+    
     while( $data = mysqli_fetch_assoc($res)){
 
         $data_question = $data["forgot_question"];
         $data_answer = $data["forgot_answer"];
 
         if(($data_question == $question) && ($data_answer == $answer)){
-            echo <<<EOF
-            <div id='done' class='info'>your temporary password is <b>Temp@2021</b><br>
-            Please Update your new password by logging with this temporary password.
-            </div>
-            <script>
-                $(document).ready(()=>{
-                    setTimeout(() => {
-                        window.location.replace("http:index.php");
-                    }, 1000000);
-                })
-            </script>
-            EOF;
+            
+            $query = "UPDATE users
+                    SET user_pass = '$temp'
+                    WHERE user_email = '$user_email' ;";
+            $res = mysqli_query($conn,$query);
+            if(!$res){
+                echo <<<EOF
+                    <div class='info'>Your question-answer combination did not match any user in our database,
+                    ensure your combination is correct and try again
+                    </div>
+                EOF;
+            }else{
+                $sql = "SELECT
+                        user_id,
+                        user_name,
+                        user_level,
+                        user_email
+                    FROM
+                        users
+                    WHERE
+                        user_email = '$user_email'";
+
+                $result = mysqli_query($conn, $sql) or die("SIGN IN :".mysqli_error($conn));
+                $_SESSION['signed_in'] = true;
+
+                //we also put the user_id and user_name values in the $_SESSION, so we can use it at various pages
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $_SESSION['user_id'] = $row['user_id'];
+                    $_SESSION['user_name'] = $row['user_name'];
+                    $_SESSION['user_level'] = $row['user_level'];
+                    $_SESSION['user_email'] = $row['user_email'];
+                }
+
+                echo <<<EOF
+                    <div id='done' class='info'>Your temporary password is <h2>Temp@2021.</h2>
+                    Please use this temporary password to log in and update your new password.
+                    <span id="ok">Got it !</span>
+
+                    </div>
+
+                    <script>
+                        $(document).ready(()=>{
+                            $("span#ok").click(()=>{
+                                window.location.replace("http:editProfile.php?temp=Temp@2021");
+                            })
+                        })
+                    </script>
+                EOF;
+            }
         }
         else{
             echo <<<EOF
-            <div class='info'>Your question-answer did not match any user in our database
+            <div class='info'>Your question-answer combination did not match any user in our database,
+             ensure your combination is correct and try again
             </div>
-            <script>
-                $(document).ready(()=>{
-                    setTimeout(() => {
-                        window.location.replace("http:index.php");
-                    }, 1000000);
-                })
-            </script>
             EOF;
+            $_SESSION["forgotPswd"] = true;
         }
     }
 
@@ -174,31 +218,6 @@ if (($fp == true) && isset($_POST["submit"])){
         </div>";
     }
 
-    /* else{
-        if(mysqli_num_rows($res)){
-            while($data= mysqli_fetch_assoc($res)){
-                $data_question = $data["forgot_question"];
-                $data_answer = $data["forgot_answer"];
-
-                if(($data_question == $question) && ($data_answer == $answer)){
-                    echo <<<EOF
-                    <div id='done' class='info'>your temporary password is <b>Temp@2021</b><br>
-                    Please Update your new password by logging with this temporary password.
-                    </div>
-                    <script>
-                        $(document).ready(()=>{
-                            setTimeout(() => {
-                                window.location.replace("http:index.php");
-                            }, 1000000);
-                        })
-                    </script>
-                    EOF;
-                }
-
-                
-            }
-        }
-    } */
 }/* 
 else if(isset($_POST["submit"])){
     $question = $_POST["question"];
@@ -232,4 +251,3 @@ else if(isset($_POST["submit"])){
 // echo "hello";
 
 ?>
-
