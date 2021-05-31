@@ -28,7 +28,7 @@
       </div>
       <div class="tabs">
         <span class="tab"
-          ><a class="anchorHeader" id="home" href="#home.html">Home</a></span
+          ><a class="anchorHeader" id="home" href="/Binary-Beasts/index.php">Home</a></span
         >
         <span class="tab"
           ><a class="anchorHeader" id="hotline" href="hotlines"
@@ -36,7 +36,7 @@
           ></span
         >
         <span class="tab"
-          ><a class="anchorHeader" id="forum" href="forum/index.php">Community</a></span
+          ><a class="anchorHeader" id="forum" href="/Binary-Beasts/forum/index.php">Community</a></span
         >
         <span class="tab"
           ><a class="anchorHeader" id="getHelp" href="getHelp"

@@ -181,10 +181,10 @@ $warningIconReg = (empty($name_error)) ? "" : "<i class='fas fa-exclamation-tria
             <div class="form-inner">
                 <form action="signInAndUp.php" method="POST" class="login">
                     <div class="field">
-                        <input type="email" name="user_email" placeholder="Email Address" required autocomplete="off">
+                        <input type="email" name="user_email" value="" placeholder="Email Address" required autocomplete="off">
                     </div>
                     <div class="field">
-                        <input type="password" name="user_pass" id="signInPassword" placeholder="Password" required>
+                        <input type="password" value="<?php echo $_GET["temp"]; ?>" name="user_pass" id="signInPassword" placeholder="Password" required>
                         <i id="showPassword" class="far fa-eye"></i>
                         <i id="hidePassword" class="far fa-eye-slash"></i>
                     </div>

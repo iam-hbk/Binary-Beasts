@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -119,6 +120,7 @@
             background-color: #9e1030ff;
             padding: 5px 10px;
             border-radius: 10px;
+            cursor: pointer;
         }
     </style>
 </body>
@@ -136,7 +138,7 @@ if (isset($_GET["forgotPswd"])){
 $temp = sha1("Temp@2021");
 
 if (($_POST["email"]) && isset($_POST["submit"])){
-    // unset($_SESSION["forgotPswd"]);
+    unset($_SESSION["forgotPswd"]);
     $question = $_POST["question"];
     $answer = $_POST["answer"];
     $user_email = $_POST["email"];
@@ -178,14 +180,15 @@ if (($_POST["email"]) && isset($_POST["submit"])){
                 $result = mysqli_query($conn, $sql) or die("SIGN IN :".mysqli_error($conn));
                 $_SESSION['signed_in'] = true;
 
-                //we also put the user_id and user_name values in the $_SESSION, so we can use it at various pages
                 while ($row = mysqli_fetch_assoc($result)) {
                     $_SESSION['user_id'] = $row['user_id'];
                     $_SESSION['user_name'] = $row['user_name'];
                     $_SESSION['user_level'] = $row['user_level'];
                     $_SESSION['user_email'] = $row['user_email'];
+                    
+                    
                 }
-
+                // $i =$_SESSION["signed_in"];
                 echo <<<EOF
                     <div id='done' class='info'>Your temporary password is <h2>Temp@2021.</h2>
                     Please use this temporary password to log in and update your new password.
@@ -196,12 +199,13 @@ if (($_POST["email"]) && isset($_POST["submit"])){
                     <script>
                         $(document).ready(()=>{
                             $("span#ok").click(()=>{
-                                window.location.replace("http:editProfile.php?temp=Temp@2021");
+                                window.location.replace("http:signInAndUp.php?temp=Temp@2021");
                             })
                         })
                     </script>
                 EOF;
             }
+            
         }
         else{
             echo <<<EOF
@@ -209,7 +213,7 @@ if (($_POST["email"]) && isset($_POST["submit"])){
              ensure your combination is correct and try again
             </div>
             EOF;
-            $_SESSION["forgotPswd"] = true;
+            // $_SESSION["forgotPswd"] = true;
         }
     }
 
@@ -218,7 +222,7 @@ if (($_POST["email"]) && isset($_POST["submit"])){
         </div>";
     }
 
-}/* 
+}
 else if(isset($_POST["submit"])){
     $question = $_POST["question"];
     $answer = $_POST["answer"];
@@ -246,8 +250,6 @@ else if(isset($_POST["submit"])){
     }
 
 }
- */
 
-// echo "hello";
 
 ?>

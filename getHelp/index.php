@@ -216,20 +216,6 @@ include 'Binary-Beasts/header.php';
 
   <!-- making a form for users to add their own organisation. -->
 
-<p>ADD AN ORGANIZATION BY FILLING THE FORM BELOW</p>
-<h3>Contact form</h3>
-
-<div class="container">
-  <form action="index.php" method="POST">
-    <label for="fname">The name of the organisation</label>
-    <input type="text" id="fname" name="orgname" placeholder="Organization name...">
-
-         <label for="subject">Massage</label>
-    <textarea id="subject" name="subject" placeholder="A brief description about the organization. e.g what they do?, where they are located?..." style="height:200px"></textarea>
-
-    <button id="submit" onclick="myFunction()">Submit</button>
-  </form>
-</div>
 <!-- JAVASCRIPT -->
 <script src="gethelp.js"></script>
 <?php include "./footer.php"?>
