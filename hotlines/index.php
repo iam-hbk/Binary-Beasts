@@ -13,6 +13,9 @@
 </head>
 
 <body>
+
+  <span class="heartbeat" id="float"><i class="fas fa-exclamation-circle"></i></span>
+  <div class="infos"></div>
   
   <!--Slideshow Container-->
   <div class="slideshow">
@@ -125,15 +128,6 @@
      
       
     </table>
-    <script>
-        $("#slideDown").hide();
-        $(document).ready(()=>{
-            
-          $("#baby").click(()=>{
-            $("#slideDown").slideToggle();
-          })
-        })
-      </script>
 
   </div>
 
