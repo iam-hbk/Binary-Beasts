@@ -9,7 +9,7 @@
           </div>
           <div class="contactContainer">
             <i id="email" class="far fa-envelope"></i>
-            <a class="infoContent" href="#">info@crimeLine.co.za</a>
+            <a class="infoContent" href="#">binarybeastscrimeline@gmail.com</a>
           </div>
         </div>
       </div>
@@ -30,7 +30,7 @@
           <a href="https://www.instagram.com/crimeline_za/" target="_blank"
             ><i class="fab fa-instagram"></i
           ></a>
-          <a target="_blank" href="facebookPage"
+          <a target="_blank" href="https://www.facebook.com/Crime-Line-101727332133638/"
             ><i class="fab fa-facebook-f"></i
           ></a>
           <a target="_blank" href="https://twitter.com/BCrimeline"
