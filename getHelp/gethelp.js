@@ -4,6 +4,9 @@ function hide_vid()
     document.getElementById("close_vid").style.display="none";
     document.getElementById("vid").style.display="none";
     document.getElementById("vid_container").style.display="none";
+
+    var x = document.getElementById("vid").autoplay;
+  
   }
 
 // SCRIPT FOR THE AUTO-SLIDE ON THE GETHELP PAGE
