@@ -8,9 +8,25 @@
     <title>Document</title>
 </head>
 <body>
+    
     <div class="info">This process will help you recover your password in case you forget it.
-    Please ensure that the data you enter is legit to avoid any future issue</div>
+    Please ensure that the data you enter is legit to avoid any issue</div>
+    <span style="display:none;" class="phpData"><?php echo isset($_GET["forgotPswd"]); ?></span>
     <form action="forgotPswd.php" method="post">
+        <input id="email"  placeholder="Please enter your email address..." required type="email" name="email" id="city">
+        <script>
+            $(document).ready(()=>{
+                var phpData = $("span.phpData")
+                console.log(phpData);
+                if(phpData.html()){
+                    $("#email").show();
+                }
+                else{
+                    $("#email").hide();
+                    $("#email").removeAttr("required");
+                }
+            })
+        </script>
         <h1>Pick a question</h1>
         <ul>
             <li><input required type="radio" value = "town" name="question" id="q1"><label for="q1">What is the name of the town where you were born?</label></li>
@@ -58,11 +74,10 @@
         div{
             display: flex;
             height: 50px;
-            
             /* justify-content:space-between; */
             flex-direction: column;
         }
-        div input{
+        input[type="text"],input[type="email"]{
             border:2px solid #9e1030ff;
             padding:10px;
             border-radius:10px;
@@ -102,8 +117,90 @@
 include "connect.php";
 session_start();
 
+if(isset($_GET["forgotPswd"])){
+    $_SESSION["forgotPswd"] = true;
+}
+$fp = ($_SESSION["forgotPswd"])? $_SESSION["forgotPswd"]:false;
 
-if(isset($_POST["submit"])){
+if (($fp == true) && isset($_POST["submit"])){
+    unset($_SESSION["forgotPswd"]);
+
+    $question = $_POST["question"];
+    $answer = $_POST["answer"];
+    $user_email = $_POST["email"];
+    echo $question.$answer.$user_email;
+
+    $query="SELECT forgot_question,forgot_answer,user_pass
+            FROM users
+            WHERE user_email = '$user_email' ;";
+    $res = mysqli_query($conn,$query) or die("ERROR:".mysqli_error($conn));
+
+    while( $data = mysqli_fetch_assoc($res)){
+
+        $data_question = $data["forgot_question"];
+        $data_answer = $data["forgot_answer"];
+
+        if(($data_question == $question) && ($data_answer == $answer)){
+            echo <<<EOF
+            <div id='done' class='info'>your temporary password is <b>Temp@2021</b><br>
+            Please Update your new password by logging with this temporary password.
+            </div>
+            <script>
+                $(document).ready(()=>{
+                    setTimeout(() => {
+                        window.location.replace("http:index.php");
+                    }, 1000000);
+                })
+            </script>
+            EOF;
+        }
+        else{
+            echo <<<EOF
+            <div class='info'>Your question-answer did not match any user in our database
+            </div>
+            <script>
+                $(document).ready(()=>{
+                    setTimeout(() => {
+                        window.location.replace("http:index.php");
+                    }, 1000000);
+                })
+            </script>
+            EOF;
+        }
+    }
+
+    if(!$res){
+        echo "<div class='info'>Something went wrong, please try again later".mysqli_error($conn)."
+        </div>";
+    }
+
+    /* else{
+        if(mysqli_num_rows($res)){
+            while($data= mysqli_fetch_assoc($res)){
+                $data_question = $data["forgot_question"];
+                $data_answer = $data["forgot_answer"];
+
+                if(($data_question == $question) && ($data_answer == $answer)){
+                    echo <<<EOF
+                    <div id='done' class='info'>your temporary password is <b>Temp@2021</b><br>
+                    Please Update your new password by logging with this temporary password.
+                    </div>
+                    <script>
+                        $(document).ready(()=>{
+                            setTimeout(() => {
+                                window.location.replace("http:index.php");
+                            }, 1000000);
+                        })
+                    </script>
+                    EOF;
+                }
+
+                
+            }
+        }
+    } */
+}/* 
+else if(isset($_POST["submit"])){
     $question = $_POST["question"];
     $answer = $_POST["answer"];
     $user_id = $_GET["user_id"];
@@ -130,6 +227,8 @@ if(isset($_POST["submit"])){
     }
 
 }
+ */
+
 // echo "hello";
 
 ?>

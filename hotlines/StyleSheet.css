@@ -1,4 +1,3 @@
-
  /*Hot-lines styling
 --------------------------------------------------------------------------------------------------------------------------------------------*/
 /* Slideshow container */
@@ -6,15 +5,19 @@
 --------------------------------------------------------------------------------------------------------------------------------------------*/
 /* Slideshow container */
 .slideshow {
-  position: relative;
+  /* position: relative; */
   position: sticky;
   background-image: url("whistleblowers.png");
   background-repeat: no-repeat;
   background-size: 100%;
   background-size: cover;
+  position:fixed;
+  top:11%;
+  width: 100%;
+  overflow:hidden;
 }
 body{
-  background-color: #9e1030ff;
+  background-color:white;
 }
 
 /* Slides */
@@ -91,12 +94,12 @@ q,
 
 /* hotlines sidebar*/
 .sidebar {
-  height: 50%;
+  height:60%;
   width: 25%;
-  position:sticky;
+  position:fixed;
   position:top fixed;
   float: left;
-  z-index: 1;
+  z-index: -1;
   top: 307px;
   left: 0;
   background: #9e1030ff;
@@ -130,18 +133,29 @@ q,
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  background:wheat;
+  background:white;
   
   flex-wrap: wrap;
+  padding-top: 250px;
+  margin-top:30px;
 }
 .WhistleBlowers {
   font-family: Poppins;
   text-align: left;
-  margin-right: 10px;
- 
+  margin-right: 22px;
+  font-weight: bold;
+  
 }
-.WhistleBlowers:hover{
-    border: 1px solid #777;
+a{
+  text-decoration: none;
+
+}
+  .WhistleBlowers:hover{
+    border: 1px solid transparent;
+    background:#9e1030ff;
+  }
+  .WhistleBlowers a:hover{
+    color:white;
   }
 
 .tel {

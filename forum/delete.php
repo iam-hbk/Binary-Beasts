@@ -17,7 +17,7 @@ $set = "SET FOREIGN_KEY_CHECKS=1";
 $rs = mysqli_query($conn,$set);
 
 // echo $username;
-if (isset($_POST["username"])){
+if (isset($_POST["user_name"])){
 
     print_r(mysqli_fetch_assoc($r));
     if(!$r){

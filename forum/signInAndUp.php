@@ -188,12 +188,12 @@ $warningIconReg = (empty($name_error)) ? "" : "<i class='fas fa-exclamation-tria
                         <i id="showPassword" class="far fa-eye"></i>
                         <i id="hidePassword" class="far fa-eye-slash"></i>
                     </div>
-                    <div class="pass-link"><a href="#">Forgot password?</a></div>
+                    <div class="pass-link"><a onclick='window.location.replace("http:/Binary-Beasts/forum/forgotPswd.php?forgotPswd=true")' href="#">Forgot password?</a></div>
                     <div class="field">
                         <input type="submit" name="signInSubmit" value="Sign In">
                     </div>
                     <div class="error"><?php echo "$warningIcon<span class='error'>$error_message </span>"; ?></div>
-                    <div class="signup-link">Not a member? <a href="#">Sign Up Now</a></div>
+                    <div class="signup-link">Not a member? <a href="<>">Sign Up Now</a></div>
                 </form>
                 <form action="signInAndUp.php" method="POST" class="signup">
                     <div class="field">

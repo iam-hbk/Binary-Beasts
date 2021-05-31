@@ -8,15 +8,11 @@
   <title>Hotlines</title>
   <link rel="stylesheet" href="StyleSheet.css">
   <link rel="stylesheet" href="headerIndexFooter.css">
-  <?php echo file_get_contents("header.php"); ?>
+  <?php include("header.php"); ?>
 </head>
 
 <body>
-  <!-- link header and footer-->
-
-  <!--<?php echo file_get_contents("footer.php"); ?>-->
-
-
+  
   <!--Slideshow Container-->
   <div class="slideshow">
 
@@ -235,7 +231,7 @@
   </div>
   <div class="clearfix"></div>
   <div style="padding:6px;"></div>
+ 
 
-</body>
+<?php include("footer.php"); ?>
 
-</html>

@@ -42,8 +42,51 @@ session_start();
         <h2>Community</h2>
         <h3><a href="/Binary-Beasts"><i class="fas fa-arrow-left"></i></a></h3>
       </div>
+      <div style = "
+        display:flex;
+        align-items:center;
+        margin-right: -45%;
+        position:relative;
+      
+      " class="search">
+      <input placeholder="search..."
+       style="
+        border:none;
+        background:transparent;
+        border-bottom:2px solid black;
+        padding:5px;
+      " type="text" id="search">
+	        <div style="
+            position:fixed;
+            top: 85px;
+            right:30%;
+            background:#9e1030ff;
+            padding:auto;
+            width:20vw;
+            backdrop-filter:blur(10px);
+            border-radius:10px;
+            z-index:1000;
+          " id="categories"></div>
+          <i style = "cursor:pointer;z-index:10;position:absolute;top:25%;right:0" class="fa fa-search" id="searchIcon" aria-hidden="true"></i>
+      </div>
+      <style>
+        div#categories div{
+          margin: 5px 10px;
+        }
+        div#categories div a{
+          color: white
+        }
+        div#categories div a:hover{
+          text-align: center;
+          font-size: 1.2em;
+
+        }
+      </style>
+      <script type="text/javascript" src="search.js"></script>
       <ul>
-        <li><i class="fa fa-search" aria-hidden="true"></i></li>
+        <li>
+          
+        </li>
         <li>
           <div class="profileContainer">
             <span id="quitProfileContainer">X</span>

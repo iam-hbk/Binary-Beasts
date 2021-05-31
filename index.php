@@ -24,7 +24,7 @@
       procedures to ensure the safest response to each case.
       </p>
       <span class="button" id="toWhistle"
-        ><a href="#whistle">Call Now !</a></span
+        ><a href="hotlines/index.php">View Hot-lines</a></span
       >
     </div>
   </section>
@@ -36,7 +36,7 @@
       that most South Africans face.Crime-Line provides an open space for you to report and speak out about your experiences. 
       We believe Standing together is better than standing alone. UMUNTU NGUMUNTU NGABANTU (MOTHO KE MOTHO KA BATHO BABANG).
       </p>
-      <span class="button" id="toForum"><a href="  forum/">see Community</a></span>
+      <span class="button" id="toForum"><a href="forum/">see Community</a></span>
     </div>
     <div class="img">
       <img src="images/forum.jpg" />
@@ -53,11 +53,11 @@
       your desire to feel better can be your most powerful ally. Do not give in to the ego's
       attempts to convince you that there is something wrong with you: there is nothing wrong with you.
        The reactions you have as a result of trauma are only reactions; they do not define who you are. 
-       GET HELP from Crime-Line provides a variety of support groups and legal representation 
-       that can be your first step toward healing.
+      GET HELP from Crime-Line provides a variety of support groups and legal representation 
+      that can be your first step toward healing.
       </p>
       <span class="button" id="toGetHelp"
-        ><a href="#getHelp">Get Help</a></span
+        ><a href="getHelp/gethelp.php">Get Help</a></span
       >
     </div>
   </section>

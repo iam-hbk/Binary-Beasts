@@ -62,7 +62,7 @@ CREATE TABLE `posts` (
   KEY `post_by` (`post_by`),
   CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`post_topic`) REFERENCES `topics` (`topic_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `posts_ibfk_2` FOREIGN KEY (`post_by`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +71,7 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-INSERT INTO `posts` VALUES (13,'My neighbor is in trouble guys ! ','2021-05-26 00:02:59',13,17,1,0,0),(14,'so this guy was weird with me, I ran yoh !','2021-05-26 01:28:19',14,17,1,0,0),(15,'I got bullied at school, how do I deal with it ?','2021-05-26 12:42:00',16,16,1,0,0),(16,'Johannesburg CBD, be careful, something like that','2021-05-26 13:03:42',17,20,1,0,0),(17,'Some reply content dummy data just to fill in Some reply content dummy data just to fill in Some reply content dummy data just to fill in Some reply content dummy data just to fill in Some reply content dummy data just to fill in','2021-05-27 08:41:04',16,16,0,0,0),(18,'Some reply content dummy data just to fill in Some reply content dummy data just to fill in Some reply content dummy data just to fill in Some reply content ','2021-05-27 09:45:22',17,16,0,0,0),(19,'something like thatSome reply content dummy data just to fill in Some reply content dummy data just to fill in Some reply content dummy data just to fill in Some','2021-05-27 09:45:44',17,16,0,0,0),(20,'ohannesburg CBD, be careful, something like thatSome reply content dummy data','2021-05-27 10:43:17',17,19,0,0,0),(21,'I am chadrack I reply in pickpocketing','2021-05-27 10:46:37',17,17,0,0,0),(22,'I\'m chad reply in bullying','2021-05-27 10:47:21',16,17,0,0,0),(23,'A password is a string of characters used for authenticating a user on a computer system. For example, you may have an account on your computer that requires you to log in. ... Most passwords are comprised of several characters, which can typically include letters, numbers, and most symbols, but not spaces.','2021-05-27 12:04:45',18,23,1,0,0),(24,'Oh really ! ','2021-05-27 12:47:51',18,24,0,0,0),(25,'That\'s actually useful\r\n','2021-05-27 12:56:44',18,24,0,0,0),(26,'oh really !!','2021-05-27 12:57:28',17,24,0,0,0),(27,'jo\'burg, your post doesn\'t make sense','2021-05-27 12:59:14',17,23,0,0,0),(28,'you got bullied ? that sucks ','2021-05-27 13:08:20',16,23,0,0,0),(29,'well don\'t mind them','2021-05-27 13:09:57',16,23,0,0,0),(30,'Guys be careful, Braam is not safe these days.','2021-05-27 23:39:51',19,28,1,0,0),(31,'Be careful guys','2021-05-27 23:40:19',19,28,0,0,0),(32,'yea it\'s true, you mustn\'t go there','2021-05-27 23:41:15',19,24,0,0,0),(33,'children of Ben are preparing a thing be careful out there!','2021-05-28 14:36:58',20,30,1,0,0),(34,'Okay rich man is here','2021-05-28 14:37:21',16,30,0,0,0),(35,'Don\\\'t allow people to touch you when you don\\\'t want.','2021-05-28 15:45:28',21,24,1,0,0),(36,'ive expeienced something simillar','2021-05-28 16:38:05',14,31,0,0,0),(37,'witnessed someone being beaten brutally for stealing a pack of bubblegum','2021-05-28 16:39:45',22,31,1,0,0),(38,'don\'t allow it\r\n','2021-05-28 23:26:02',21,30,0,0,0),(39,'Yes we can we live together although we have some differences, don\\\'t let them divide us, let\\\'s fight, don\\\'t give up\\r\\n','2021-05-28 23:27:45',23,30,1,0,0),(40,'don\'t let\'s\r\n\r\nsome text','2021-05-28 23:41:02',24,30,1,0,0),(41,'huh ! really\r\nI\'m shocked','2021-05-28 23:42:56',20,30,0,0,0),(43,'Huh?','2021-05-29 00:07:48',24,30,0,0,0);
+INSERT INTO `posts` VALUES (1,'A data breach is the intentional or unintentional release of secure or private/confidential information to an untrusted environment. Other terms for this phenomenon include unintentional information disclosure, data leak, information leakage and also data spill','2021-05-30 23:31:41',2,1,1,0,0),(2,'A hate crime is a prejudice-motivated crime which occurs when a perpetrator targets a victim because of their membership','2021-05-31 00:12:29',3,2,1,0,0),(3,'oh wow, good to know','2021-05-31 00:14:00',2,2,0,0,0);
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,7 +125,7 @@ CREATE TABLE `topics` (
   CONSTRAINT `topics_ibfk_1` FOREIGN KEY (`topic_cat`) REFERENCES `categories` (`cat_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `topics_ibfk_2` FOREIGN KEY (`topic_by`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `topics_ibfk_3` FOREIGN KEY (`topic_by`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -134,7 +134,7 @@ CREATE TABLE `topics` (
 
 LOCK TABLES `topics` WRITE;
 /*!40000 ALTER TABLE `topics` DISABLE KEYS */;
-INSERT INTO `topics` VALUES (13,'Robbery near me','2021-05-26 00:02:59',3,17),(14,'I ran !','2021-05-26 01:28:18',2,17),(16,'Bullying','2021-05-26 12:41:57',9,16),(17,'pickpocketing','2021-05-26 13:03:42',3,20),(18,'Password portection','2021-05-27 12:04:45',8,23),(19,'rape around braam','2021-05-27 23:39:50',2,28),(20,'Ben ladin','2021-05-28 14:36:58',13,30),(21,'touch touch games','2021-05-28 15:45:27',2,24),(22,'bathong','2021-05-28 16:39:45',14,31),(23,'Yes we can!','2021-05-28 23:27:45',5,30),(24,'yea we can !','2021-05-28 23:41:02',5,30);
+INSERT INTO `topics` VALUES (2,'Data breaches','2021-05-30 23:31:40',8,1),(3,'what is hate crime?','2021-05-31 00:12:29',5,2);
 /*!40000 ALTER TABLE `topics` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,10 +152,12 @@ CREATE TABLE `users` (
   `user_email` varchar(255) NOT NULL,
   `user_date` datetime NOT NULL,
   `user_level` int NOT NULL,
+  `forgot_question` varchar(255) DEFAULT NULL,
+  `forgot_answer` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name_unique` (`user_name`),
   UNIQUE KEY `user_email` (`user_email`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -164,7 +166,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (13,'Ronnie','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3','Ronnie@uj.com','2021-05-20 16:48:05',1),(16,'Zandy','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3','sanah@uj.com','2021-05-20 22:53:28',1),(17,'chadrack','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3','chad@uj.com','2021-05-21 12:02:26',1),(19,'Lelethu','94ba69fdd6ac7c1576e4b079514aa04004822824','lele2@gmail.com','2021-05-24 11:23:44',1),(20,'Bel','385c9b0a4949de9ac44a71ba17969ca502dcd238','sanah.rasethaba@gmail.com','2021-05-26 12:59:43',1),(22,'mamie','3e3780dc5bf697c55df28ce1f5240051652bfd2a','mamieMiziro@gmail.com','2021-05-27 11:40:19',1),(24,'Nathan','2c95e590c473c4649b9029a37c3240aceaa196ff','Ntback@gmail.com','2021-05-27 11:49:29',1),(25,'baba','b32ee68acb841d865611c8efc7a9490fe70ac5d0','baba@gmail.com','2021-05-27 11:59:07',1),(28,'Ndivhuwo','4c16ea74e2d721f0fcf3567f5145e8008ab72c2a','Ndi@uj.ac.za','2021-05-27 23:37:30',1),(29,'Scott','0322b66b740b0a00d68bb755c4961c0adb56a318','Emmanuek@gmail.com','2021-05-28 13:31:26',1),(30,'Rich man','0175734df3d0b382299d49b3835d7eb218269fe5','isra@uj.com','2021-05-28 14:35:17',1);
+INSERT INTO `users` VALUES (1,'heritier','6424e3043cfccf96794eaf35c8b1cb65f8d02acf','hbk@gmail.com','2021-05-30 23:31:05',1,NULL,NULL),(2,'sanah','b4160317b11815f72c8ea1d5ea86df53d6c7b30b','sanah@gmail.com','2021-05-31 00:04:53',1,NULL,NULL),(3,'dakalo','14390a47298eac835e573782efb2e54e07544f4a','dakalo@gmail.com','2021-05-31 09:58:59',1,NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -182,7 +184,9 @@ CREATE TABLE `votes` (
   `N_P` int DEFAULT NULL,
   PRIMARY KEY (`vote_id`),
   UNIQUE KEY `voted_by` (`voted_by`),
-  CONSTRAINT `votes_ibfk_1` FOREIGN KEY (`voted_by`) REFERENCES `users` (`user_id`)
+  UNIQUE KEY `post_id` (`post_id`),
+  CONSTRAINT `votes_ibfk_1` FOREIGN KEY (`voted_by`) REFERENCES `users` (`user_id`),
+  CONSTRAINT `votes_ibfk_2` FOREIGN KEY (`post_id`) REFERENCES `posts` (`post_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -204,4 +208,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-29 13:14:35
+-- Dump completed on 2021-05-31 10:12:26

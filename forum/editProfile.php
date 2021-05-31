@@ -136,9 +136,9 @@ if (isset($_POST["submitEdit"])) {
             }
         </style>
         <div class="updatePassword"><i class="fas fa-key"></i><span class="cpb">Change Password</span></div>
-        <div class="info posts">Number of posts: 73</div>
+        <!-- <div class="info posts">Number of posts: 73</div>
         <div class="info replies">Number of replies: 45</div>
-        <div class="info votes">Number of votes: 85</div>
+        <div class="info votes">Number of votes: 85</div> -->
         <a id="linkDelAcc" href="#"><div id="deleteAcc">Delete account <i class="fas fa-trash"></i></div></a>
         <?php if (strlen($error) > 0) {echo '<div class="errors">' . $error . '</div>';}?>
     </div>
@@ -288,7 +288,7 @@ if (isset($_POST["submitEdit"])) {
 
                         console.log(data);
                         $(".wrapper").addClass("AccDeleted");
-                        $(".AccDeleted").html("<?php session_destroy() ?>You have been <em>LOGGED OUT</em> and your account has been <em>SUCCESSFULLY DELETED</em>.");
+                        $(".AccDeleted").html("You have been <em>LOGGED OUT</em> and your account has been <em>SUCCESSFULLY DELETED</em>.");
                         $(".AccDeleted").css("text-align","center");
                         $(".AccDeleted em").css({
                             "font-style":"normal","color":"#9e1030ff","font-weight":"bold"
